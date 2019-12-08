@@ -25,14 +25,26 @@ class MainActivity : AppCompatActivity() {
         disposable?.dispose()
     }
 
-    private fun getQuestions(pAmount: String = "10", pCategory: String = "", pDifficulty: String = "", pType: String = "multiple") {
+    private fun getQuestions(
+        pAmount: String = "10",
+        pCategory: String = "",
+        pDifficulty: String = "",
+        pType: String = "multiple"
+    ) {
         disposable =
-            OpentdbServe.getQuestions(amount = pAmount, category = pCategory, difficulty = pDifficulty, type = pType)
+            OpentdbServe.getQuestions(
+                amount = pAmount,
+                category = pCategory,
+                difficulty = pDifficulty,
+                type = pType
+            )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { result -> Toast.makeText(baseContext, "SUCCESS", Toast.LENGTH_SHORT).show() },
-                    { error -> Toast.makeText(baseContext, error.message, Toast.LENGTH_SHORT).show() }
+                    { error ->
+                        Toast.makeText(baseContext, error.message, Toast.LENGTH_SHORT).show()
+                    }
                 )
     }
 
