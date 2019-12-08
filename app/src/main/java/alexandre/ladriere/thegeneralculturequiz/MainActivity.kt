@@ -3,12 +3,37 @@ package alexandre.ladriere.thegeneralculturequiz
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity() {
+
+    val OpentdbServe by lazy {
+        OpentdbService.create()
+    }
+    var disposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        disposable?.dispose()
+    }
+
+    private fun getQuestions(pAmount: String = "10", pCategory: String = "", pDifficulty: String = "", pType: String = "multiple") {
+        disposable =
+            OpentdbServe.getQuestions(amount = pAmount, category = pCategory, difficulty = pDifficulty, type = pType)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    { result -> Toast.makeText(baseContext, "SUCCESS", Toast.LENGTH_SHORT).show() },
+                    { error -> Toast.makeText(baseContext, error.message, Toast.LENGTH_SHORT).show() }
+                )
     }
 
     private fun hideSystemUI() {

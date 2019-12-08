@@ -9,10 +9,10 @@ import retrofit2.http.Query
 
 interface OpentdbService {
     @GET("api.php")
-    fun getQuestions(@Query("amount") amount: String = "10",
-                      @Query("category") category: String = "",
-                      @Query("difficulty") difficulty: String = "",
-                      @Query("type") type: String = "multiple"):
+    fun getQuestions(@Query("amount") amount: String,
+                      @Query("category") category: String,
+                      @Query("difficulty") difficulty: String,
+                      @Query("type") type: String):
             Observable<QuestionModel.Response>
 
     companion object {
