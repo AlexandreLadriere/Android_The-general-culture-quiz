@@ -10,4 +10,5 @@
     <color name="colorBackgroundDark">#151A33</color>
     <color name="colorText">#FCFCFD</color>
     <color name="colorTextSecond">#6247EF</color>
+    <color name="colorTextThird">#7380BA</color>
 </resources>
