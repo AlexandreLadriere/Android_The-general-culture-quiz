@@ -1,5 +1,7 @@
 package alexandre.ladriere.thegeneralculturequiz
 
+import java.io.Serializable
+
 data class Question(
     val category: String,
     val type: String,
@@ -10,5 +12,4 @@ data class Question(
     val proposition2: String,
     val proposition3: String,
     val correct: Boolean = false
-) {
-}
+) : Serializable
