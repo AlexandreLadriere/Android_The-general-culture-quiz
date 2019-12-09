@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val startButton = a_main_button_start.setOnClickListener { view: View? ->
+            questionsArray.clear()
             getQuestionsFromAPI()
         }
     }
@@ -75,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, QuestionActivity::class.java)
         intent.putExtra(QUESTIONS_ARRAY, questionsArray)
         this.startActivity(intent)
-        this.finish()
+        //this.finish()
     }
 
     private fun hideSystemUI() {

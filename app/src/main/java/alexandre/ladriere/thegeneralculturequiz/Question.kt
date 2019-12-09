@@ -11,5 +11,5 @@ data class Question(
     val proposition1: String,
     val proposition2: String,
     val proposition3: String,
-    val correct: Boolean = false
+    var correct: Boolean = false
 ) : Serializable

@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_question.*
 class QuestionActivity : AppCompatActivity() {
 
     private lateinit var questionArray: ArrayList<Question>
+    private var currentPosition: Int = 0
 
     private lateinit var categoryTv: TextView
     private lateinit var questionTv: TextView
@@ -24,22 +25,93 @@ class QuestionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_question)
         questionArray = intent.getSerializableExtra(QUESTIONS_ARRAY) as ArrayList<Question>
 
-        val categoryTv: TextView = a_question_text_view_category
-        val questionTv: TextView = a_question_text_view_question
-        val questionNbTv: TextView = a_question_text_view_question_number
-        val proposition1B: Button = a_question_button_p1
-        val proposition2B: Button = a_question_button_p2
-        val proposition3B: Button = a_question_button_p3
-        val proposition4B: Button = a_question_button_p4
+        categoryTv = a_question_text_view_category
+        questionTv = a_question_text_view_question
+        questionNbTv = a_question_text_view_question_number
+        proposition1B = a_question_button_p1
+        proposition2B = a_question_button_p2
+        proposition3B = a_question_button_p3
+        proposition4B = a_question_button_p4
 
-        categoryTv.text = questionArray[0].category
-        questionTv.text = questionArray[0].question
-        proposition1B.text = questionArray[0].correctAnswer
-        proposition2B.text = questionArray[0].proposition1
-        proposition3B.text = questionArray[0].proposition2
-        proposition4B.text = questionArray[0].proposition3
-        questionNbTv.text = "0/10"
+        updateQuestionActivity()
+
+        proposition1B.setOnClickListener {
+            clickListenerAction(proposition1B)
+        }
+        proposition2B.setOnClickListener {
+            clickListenerAction(proposition2B)
+        }
+        proposition3B.setOnClickListener {
+            clickListenerAction(proposition3B)
+        }
+        proposition4B.setOnClickListener {
+            clickListenerAction(proposition4B)
+        }
 
         //TODO check for null size
+        //TODO Parsing function
+    }
+
+    private fun clickListenerAction(button: Button) {
+        questionArray[currentPosition].correct =
+            checkResponse(button, questionArray[currentPosition])
+        currentPosition += 1
+        updateQuestionActivity()
+        resetPropositionBackground()
+    }
+
+    private fun checkResponse(button: Button, question: Question): Boolean {
+        var retBool = false
+        if (button.text == question.correctAnswer) {
+            retBool = true
+            button.setBackgroundResource(R.drawable.custom_rectangle_correct_cr20)
+        } else {
+            button.setBackgroundResource(R.drawable.custom_rectangle_error_cr20)
+        }
+        return retBool
+    }
+
+    private fun updateQuestionActivity() {
+        if (currentPosition < questionArray.size && currentPosition >= 0) {
+            questionNbTv.text = "${currentPosition+1}/10"
+            categoryTv.text = questionArray[currentPosition].category
+            questionTv.text = questionArray[currentPosition].question
+            when ((0 until 4).random()) {
+                0 -> {
+                    proposition1B.text = questionArray[currentPosition].correctAnswer
+                    proposition2B.text = questionArray[currentPosition].proposition1
+                    proposition3B.text = questionArray[currentPosition].proposition2
+                    proposition4B.text = questionArray[currentPosition].proposition3
+                }
+                1 -> {
+                    proposition1B.text = questionArray[currentPosition].proposition1
+                    proposition2B.text = questionArray[currentPosition].correctAnswer
+                    proposition3B.text = questionArray[currentPosition].proposition2
+                    proposition4B.text = questionArray[currentPosition].proposition3
+                }
+                2 -> {
+                    proposition1B.text = questionArray[currentPosition].proposition1
+                    proposition2B.text = questionArray[currentPosition].proposition2
+                    proposition3B.text = questionArray[currentPosition].correctAnswer
+                    proposition4B.text = questionArray[currentPosition].proposition3
+                }
+                3 -> {
+                    proposition1B.text = questionArray[currentPosition].proposition1
+                    proposition2B.text = questionArray[currentPosition].proposition2
+                    proposition3B.text = questionArray[currentPosition].proposition3
+                    proposition4B.text = questionArray[currentPosition].correctAnswer
+                }
+            }
+        }
+        else {
+            this.finish()
+        }
+    }
+
+    private fun resetPropositionBackground() {
+        proposition1B.setBackgroundResource(R.drawable.custom_rectangle_text_second_cr20_empty)
+        proposition2B.setBackgroundResource(R.drawable.custom_rectangle_text_second_cr20_empty)
+        proposition3B.setBackgroundResource(R.drawable.custom_rectangle_text_second_cr20_empty)
+        proposition4B.setBackgroundResource(R.drawable.custom_rectangle_text_second_cr20_empty)
     }
 }
