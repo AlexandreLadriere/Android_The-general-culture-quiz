@@ -75,31 +75,31 @@ class QuestionActivity : AppCompatActivity() {
         if (currentPosition < questionArray.size && currentPosition >= 0) {
             questionNbTv.text = "${currentPosition+1}/10"
             categoryTv.text = questionArray[currentPosition].category
-            questionTv.text = questionArray[currentPosition].question
+            questionTv.text = removeSpecialCharFromString(questionArray[currentPosition].question)
             when ((0 until 4).random()) {
                 0 -> {
-                    proposition1B.text = questionArray[currentPosition].correctAnswer
-                    proposition2B.text = questionArray[currentPosition].proposition1
-                    proposition3B.text = questionArray[currentPosition].proposition2
-                    proposition4B.text = questionArray[currentPosition].proposition3
+                    proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
+                    proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
+                    proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
                 }
                 1 -> {
-                    proposition1B.text = questionArray[currentPosition].proposition1
-                    proposition2B.text = questionArray[currentPosition].correctAnswer
-                    proposition3B.text = questionArray[currentPosition].proposition2
-                    proposition4B.text = questionArray[currentPosition].proposition3
+                    proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
+                    proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
+                    proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
                 }
                 2 -> {
-                    proposition1B.text = questionArray[currentPosition].proposition1
-                    proposition2B.text = questionArray[currentPosition].proposition2
-                    proposition3B.text = questionArray[currentPosition].correctAnswer
-                    proposition4B.text = questionArray[currentPosition].proposition3
+                    proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
+                    proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
+                    proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
                 }
                 3 -> {
-                    proposition1B.text = questionArray[currentPosition].proposition1
-                    proposition2B.text = questionArray[currentPosition].proposition2
-                    proposition3B.text = questionArray[currentPosition].proposition3
-                    proposition4B.text = questionArray[currentPosition].correctAnswer
+                    proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
+                    proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
+                    proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
+                    proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
                 }
             }
         }
