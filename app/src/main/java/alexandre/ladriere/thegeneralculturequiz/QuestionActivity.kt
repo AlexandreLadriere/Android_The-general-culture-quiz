@@ -19,6 +19,8 @@ class QuestionActivity : AppCompatActivity() {
     private lateinit var proposition2B: Button
     private lateinit var proposition3B: Button
     private lateinit var proposition4B: Button
+    private lateinit var nextB: Button
+    private lateinit var correctB: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,7 @@ class QuestionActivity : AppCompatActivity() {
         proposition2B = a_question_button_p2
         proposition3B = a_question_button_p3
         proposition4B = a_question_button_p4
+        nextB = a_question_button_next
 
         updateQuestionActivity()
 
@@ -47,6 +50,11 @@ class QuestionActivity : AppCompatActivity() {
         proposition4B.setOnClickListener {
             clickListenerAction(proposition4B)
         }
+        nextB.setOnClickListener {
+            currentPosition += 1
+            updateQuestionActivity()
+            resetPropositionBackground()
+        }
 
         //TODO check for null size
         //TODO Parsing function
@@ -55,9 +63,7 @@ class QuestionActivity : AppCompatActivity() {
     private fun clickListenerAction(button: Button) {
         questionArray[currentPosition].correct =
             checkResponse(button, questionArray[currentPosition])
-        currentPosition += 1
-        updateQuestionActivity()
-        resetPropositionBackground()
+        nextB.visibility = Button.VISIBLE
     }
 
     private fun checkResponse(button: Button, question: Question): Boolean {
@@ -67,11 +73,13 @@ class QuestionActivity : AppCompatActivity() {
             button.setBackgroundResource(R.drawable.custom_rectangle_correct_cr20)
         } else {
             button.setBackgroundResource(R.drawable.custom_rectangle_error_cr20)
+            correctB.setBackgroundResource(R.drawable.custom_rectangle_correct_cr20)
         }
         return retBool
     }
 
     private fun updateQuestionActivity() {
+        nextB.visibility = Button.INVISIBLE
         if (currentPosition < questionArray.size && currentPosition >= 0) {
             questionNbTv.text = "${currentPosition+1}/10"
             categoryTv.text = questionArray[currentPosition].category
@@ -79,6 +87,7 @@ class QuestionActivity : AppCompatActivity() {
             when ((0 until 4).random()) {
                 0 -> {
                     proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    correctB = proposition1B
                     proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
                     proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
                     proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
@@ -86,6 +95,7 @@ class QuestionActivity : AppCompatActivity() {
                 1 -> {
                     proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
                     proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    correctB = proposition2B
                     proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
                     proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
                 }
@@ -93,6 +103,7 @@ class QuestionActivity : AppCompatActivity() {
                     proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
                     proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
                     proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    correctB = proposition3B
                     proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
                 }
                 3 -> {
@@ -100,6 +111,7 @@ class QuestionActivity : AppCompatActivity() {
                     proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
                     proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
                     proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    correctB = proposition4B
                 }
             }
         }
