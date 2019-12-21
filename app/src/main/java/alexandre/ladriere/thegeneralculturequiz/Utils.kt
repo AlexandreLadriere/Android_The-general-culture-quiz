@@ -8,5 +8,6 @@ internal fun removeSpecialCharFromString(string: String): String {
     outStr = outStr.replace("&ldquo;", "“")
     outStr = outStr.replace("&rdquo;", "”")
     outStr = outStr.replace("&amp;", "&")
+    outStr = outStr.replace("&divide;", "÷")
     return outStr
 }
