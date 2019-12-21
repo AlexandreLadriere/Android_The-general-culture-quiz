@@ -7,6 +7,6 @@ internal fun removeSpecialCharFromString(string: String): String {
     outStr = outStr.replace("&deg;", "°")
     outStr = outStr.replace("&ldquo;", "“")
     outStr = outStr.replace("&rdquo;", "”")
-    // TODO add &shy;
+    outStr = outStr.replace("&amp;", "&")
     return outStr
 }
