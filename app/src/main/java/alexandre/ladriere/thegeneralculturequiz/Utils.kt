@@ -9,5 +9,10 @@ internal fun removeSpecialCharFromString(string: String): String {
     outStr = outStr.replace("&rdquo;", "”")
     outStr = outStr.replace("&amp;", "&")
     outStr = outStr.replace("&divide;", "÷")
+    outStr = outStr.replace("&ograve;", "ò")
+    outStr = outStr.replace("&Ouml;", "Ö")
+    outStr = outStr.replace("&ouml;", "ö")
+    outStr = outStr.replace("&uuml;", "ü")
+    outStr = outStr.replace("&pi;", "π")
     return outStr
 }
