@@ -8,6 +8,24 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/a_main_app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="@font/nunito_sans"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/colorText"
+        android:textSize="44sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/a_main_button_start"
         android:layout_width="wrap_content"
@@ -19,5 +37,116 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/a_main_seek_bar_question_count" />
+
+    <LinearLayout
+        android:id="@+id/a_main_linear_layout_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a_main_app_title">
+
+        <TextView
+            android:id="@+id/a_main_text_view_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/category"
+            android:fontFamily="@font/nunito_sans"
+            android:textColor="@color/colorTextSecond"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
+        <Spinner
+            android:id="@+id/category_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackground"
+            android:dropDownWidth="match_parent"
+            android:fadeScrollbars="true"
+            android:popupBackground="@color/colorBackground"
+            android:scrollbarThumbHorizontal="@color/colorTextThird"
+            android:scrollbarThumbVertical="@color/colorTextThird"
+            android:spinnerMode="dialog"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/a_main_linear_layout_difficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a_main_linear_layout_category">
+
+        <TextView
+            android:id="@+id/a_main_text_view_difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/difficulty"
+            android:fontFamily="@font/nunito_sans"
+            android:textColor="@color/colorTextSecond"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
+        <Spinner
+            android:id="@+id/difficulty_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackground"
+            android:dropDownWidth="match_parent"
+            android:fadeScrollbars="true"
+            android:popupBackground="@color/colorBackground"
+            android:scrollbarThumbHorizontal="@color/colorTextThird"
+            android:scrollbarThumbVertical="@color/colorTextThird"
+            android:spinnerMode="dialog"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/a_main_text_view_quesion_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/nunito_sans"
+        android:gravity="center"
+        android:text="10 Questions"
+        android:textColor="@color/colorTextThird"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a_main_linear_layout_difficulty" />
+
+    <SeekBar
+        android:id="@+id/a_main_seek_bar_question_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:max="50"
+        android:min="1"
+        android:progress="10"
+        android:progressBackgroundTint="@color/colorTextThird"
+        android:progressTint="@color/colorTextSecond"
+        android:thumbTint="@color/colorTextSecond"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a_main_text_view_quesion_count" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

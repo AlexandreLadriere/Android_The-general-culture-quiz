@@ -1,14 +1,18 @@
 package alexandre.ladriere.thegeneralculturequiz
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 const val QUESTIONS_ARRAY = "QUESTIONS_ARRAY"
 
@@ -19,13 +23,34 @@ class MainActivity : AppCompatActivity() {
     }
     private var disposable: Disposable? = null
     private var questionsArray: ArrayList<Question> = ArrayList()
+    private lateinit var categorySpinner: Spinner
+    private lateinit var difficultySpinner: Spinner
+    private lateinit var seekBar: SeekBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        categorySpinner = category_spinner
+        difficultySpinner = difficulty_spinner
+        seekBar = a_main_seek_bar_question_count
+        seekBar.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar,
+                                           progress: Int, fromUser: Boolean) {
+                a_main_text_view_quesion_count.text = "$progress Questions"
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+        })
+        initCategorySpinner()
+        initDifficultySpinner()
         val startButton = a_main_button_start.setOnClickListener { view: View? ->
             questionsArray.clear()
-            getQuestionsFromAPI()
+            val category = categorySpinner.adapter.getItem(categorySpinner.selectedItemPosition) as SpinnerItem
+            val difficulty = difficultySpinner.adapter.getItem(difficultySpinner.selectedItemPosition) as SpinnerItem
+            getQuestionsFromAPI(seekBar.progress.toString(), category.code, difficulty.code)
         }
     }
 
@@ -56,20 +81,52 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getQuestionsFromRequestResult(result: QuestionModel.Response) {
-        for (i in 0 until result.results.size) {
-            val tmpQuestion = Question(
-                category = result.results[i].category,
-                type = result.results[i].type,
-                difficulty = result.results[i].difficulty,
-                question = removeSpecialCharFromString(result.results[i].question),
-                correctAnswer = removeSpecialCharFromString(result.results[i].correct_answer),
-                proposition1 = removeSpecialCharFromString(result.results[i].incorrect_answers[0]),
-                proposition2 = removeSpecialCharFromString(result.results[i].incorrect_answers[1]),
-                proposition3 = removeSpecialCharFromString(result.results[i].incorrect_answers[2])
-            )
-            questionsArray.add(tmpQuestion)
+        when (result.response_code) {
+            0 -> {
+                for (i in 0 until result.results.size) {
+                    val tmpQuestion = Question(
+                        category = result.results[i].category,
+                        type = result.results[i].type,
+                        difficulty = result.results[i].difficulty,
+                        question = removeSpecialCharFromString(result.results[i].question),
+                        correctAnswer = removeSpecialCharFromString(result.results[i].correct_answer),
+                        proposition1 = removeSpecialCharFromString(result.results[i].incorrect_answers[0]),
+                        proposition2 = removeSpecialCharFromString(result.results[i].incorrect_answers[1]),
+                        proposition3 = removeSpecialCharFromString(result.results[i].incorrect_answers[2])
+                    )
+                    questionsArray.add(tmpQuestion)
+                }
+                startQuestionActivity()
+            }
+            1 -> {
+                Toast.makeText(
+                    this,
+                    "${resources.getString(R.string.no_results)}: ${resources.getString(R.string.no_results_msg)}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            2 -> {
+                Toast.makeText(
+                    this,
+                    "${resources.getString(R.string.invalid_parameter)}: ${resources.getString(R.string.invalid_parameter_msg)}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            3 -> {
+                Toast.makeText(
+                    this,
+                    "${resources.getString(R.string.token_not_found)}: ${resources.getString(R.string.token_not_found_msg)}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            4 -> {
+                Toast.makeText(
+                    this,
+                    "${resources.getString(R.string.token_empty)}: ${resources.getString(R.string.token_empty_msg)}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
-        startQuestionActivity()
     }
 
     private fun startQuestionActivity() {
@@ -77,6 +134,47 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(QUESTIONS_ARRAY, questionsArray)
         this.startActivity(intent)
         //this.finish()
+    }
+
+    private fun initDifficultySpinner() {
+        difficultySpinner.adapter =
+            SpinnerItemArrayAdapter(this, listOf(
+                SpinnerItem("", "Any Difficulty"),
+                SpinnerItem("easy", "Easy"),
+                SpinnerItem("medium", "Medium"),
+                SpinnerItem("hard", "Hard")
+            ))
+    }
+
+    private fun initCategorySpinner() {
+        categorySpinner.adapter =
+            SpinnerItemArrayAdapter(this, listOf(
+                SpinnerItem("", "Any Category"),
+                SpinnerItem("9", "General Knowledge"),
+                SpinnerItem("10", "Entertainment: Books"),
+                SpinnerItem("11", "Entertainment: Film"),
+                SpinnerItem("12", "Entertainment: Music"),
+                SpinnerItem("13", "Entertainment: Musicals & Theatres"),
+                SpinnerItem("14", "Entertainment: Television"),
+                SpinnerItem("15", "Entertainment: Video Games"),
+                SpinnerItem("16", "Entertainment: Board Games"),
+                SpinnerItem("17", "Science & Nature"),
+                SpinnerItem("18", "Science: Computers"),
+                SpinnerItem("19", "Science: Mathematics"),
+                SpinnerItem("20", "Mythology"),
+                SpinnerItem("21", "Sports"),
+                SpinnerItem("22", "Geography"),
+                SpinnerItem("23", "History"),
+                SpinnerItem("24", "Politics"),
+                SpinnerItem("25", "Art"),
+                SpinnerItem("26", "Celebrities"),
+                SpinnerItem("27", "Animals"),
+                SpinnerItem("28", "Vehicles"),
+                SpinnerItem("29", "Entertainment: Comics"),
+                SpinnerItem("30", "Science: Gadgets"),
+                SpinnerItem("31", "Entertainment: Japanese Anime & Manga"),
+                SpinnerItem("32", "Entertainment: Cartoon & Animations")
+                ))
     }
 
     private fun hideSystemUI() {
