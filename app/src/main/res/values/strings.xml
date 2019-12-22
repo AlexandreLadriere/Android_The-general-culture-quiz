@@ -16,4 +16,6 @@
     <string name="token_not_found_msg">Session Token does not exist.</string>
     <string name="token_empty">Token Empty</string>
     <string name="token_empty_msg">Session Token has returned all possible questions for the specified query. Resetting the Token is necessary.</string>
+    <string name="category">Category:</string>
+    <string name="difficulty">Difficulty:</string>
 </resources>

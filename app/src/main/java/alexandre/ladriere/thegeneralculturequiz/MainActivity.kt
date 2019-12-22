@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Spinner
 import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     }
     private var disposable: Disposable? = null
     private var questionsArray: ArrayList<Question> = ArrayList()
+    private lateinit var categorySpinner: Spinner
+    private lateinit var difficultySpinner: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,10 @@ class MainActivity : AppCompatActivity() {
             questionsArray.clear()
             getQuestionsFromAPI()
         }
+        categorySpinner = category_spinner
+        difficultySpinner = difficulty_spinner
+        initCategorySpinner()
+        initDifficultySpinner()
     }
 
     override fun onPause() {
@@ -74,16 +81,32 @@ class MainActivity : AppCompatActivity() {
                 startQuestionActivity()
             }
             1 -> {
-                Toast.makeText(this, "${resources.getString(R.string.no_results)}: ${resources.getString(R.string.no_results_msg)}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "${resources.getString(R.string.no_results)}: ${resources.getString(R.string.no_results_msg)}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
             2 -> {
-                Toast.makeText(this, "${resources.getString(R.string.invalid_parameter)}: ${resources.getString(R.string.invalid_parameter_msg)}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "${resources.getString(R.string.invalid_parameter)}: ${resources.getString(R.string.invalid_parameter_msg)}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
             3 -> {
-                Toast.makeText(this, "${resources.getString(R.string.token_not_found)}: ${resources.getString(R.string.token_not_found_msg)}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "${resources.getString(R.string.token_not_found)}: ${resources.getString(R.string.token_not_found_msg)}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
             4 -> {
-                Toast.makeText(this, "${resources.getString(R.string.token_empty)}: ${resources.getString(R.string.token_empty_msg)}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "${resources.getString(R.string.token_empty)}: ${resources.getString(R.string.token_empty_msg)}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
@@ -93,6 +116,47 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(QUESTIONS_ARRAY, questionsArray)
         this.startActivity(intent)
         //this.finish()
+    }
+
+    private fun initDifficultySpinner() {
+        difficultySpinner.adapter =
+            SpinnerItemArrayAdapter(this, listOf(
+                SpinnerItem("", "Any Difficulty"),
+                SpinnerItem("easy", "Easy"),
+                SpinnerItem("medium", "Medium"),
+                SpinnerItem("hard", "Hard")
+            ))
+    }
+
+    private fun initCategorySpinner() {
+        categorySpinner.adapter =
+            SpinnerItemArrayAdapter(this, listOf(
+                SpinnerItem("", "Any Category"),
+                SpinnerItem("9", "General Knowledge"),
+                SpinnerItem("10", "Entertainment: Books"),
+                SpinnerItem("11", "Entertainment: Film"),
+                SpinnerItem("12", "Entertainment: Music"),
+                SpinnerItem("13", "Entertainment: Musicals & Theatres"),
+                SpinnerItem("14", "Entertainment: Television"),
+                SpinnerItem("15", "Entertainment: Video Games"),
+                SpinnerItem("16", "Entertainment: Board Games"),
+                SpinnerItem("17", "Science & Nature"),
+                SpinnerItem("18", "Science: Computers"),
+                SpinnerItem("19", "Science: Mathematics"),
+                SpinnerItem("20", "Mythology"),
+                SpinnerItem("21", "Sports"),
+                SpinnerItem("22", "Geography"),
+                SpinnerItem("23", "History"),
+                SpinnerItem("24", "Politics"),
+                SpinnerItem("25", "Art"),
+                SpinnerItem("26", "Celebrities"),
+                SpinnerItem("27", "Animals"),
+                SpinnerItem("28", "Vehicles"),
+                SpinnerItem("29", "Entertainment: Comics"),
+                SpinnerItem("30", "Science: Gadgets"),
+                SpinnerItem("31", "Entertainment: Japanese Anime & Manga"),
+                SpinnerItem("32", "Entertainment: Cartoon & Animations")
+                ))
     }
 
     private fun hideSystemUI() {
