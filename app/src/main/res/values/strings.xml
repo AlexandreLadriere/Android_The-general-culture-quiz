@@ -8,4 +8,12 @@
     <string name="score_msg4">Not bad !</string>
     <string name="home">Home</string>
     <string name="replay">Replay</string>
+    <string name="no_results">No Results</string>
+    <string name="no_results_msg">Could not return results. The API doesn\'t have enough questions for your query.</string>
+    <string name="invalid_parameter">Invalid Parameter</string>
+    <string name="invalid_parameter_msg">Contains an invalid parameter. Arguments passed in aren\'t valid.</string>
+    <string name="token_not_found">Token Not Found</string>
+    <string name="token_not_found_msg">Session Token does not exist.</string>
+    <string name="token_empty">Token Empty</string>
+    <string name="token_empty_msg">Session Token has returned all possible questions for the specified query. Resetting the Token is necessary.</string>
 </resources>

@@ -56,20 +56,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getQuestionsFromRequestResult(result: QuestionModel.Response) {
-        for (i in 0 until result.results.size) {
-            val tmpQuestion = Question(
-                category = result.results[i].category,
-                type = result.results[i].type,
-                difficulty = result.results[i].difficulty,
-                question = removeSpecialCharFromString(result.results[i].question),
-                correctAnswer = removeSpecialCharFromString(result.results[i].correct_answer),
-                proposition1 = removeSpecialCharFromString(result.results[i].incorrect_answers[0]),
-                proposition2 = removeSpecialCharFromString(result.results[i].incorrect_answers[1]),
-                proposition3 = removeSpecialCharFromString(result.results[i].incorrect_answers[2])
-            )
-            questionsArray.add(tmpQuestion)
+        when (result.response_code) {
+            0 -> {
+                for (i in 0 until result.results.size) {
+                    val tmpQuestion = Question(
+                        category = result.results[i].category,
+                        type = result.results[i].type,
+                        difficulty = result.results[i].difficulty,
+                        question = removeSpecialCharFromString(result.results[i].question),
+                        correctAnswer = removeSpecialCharFromString(result.results[i].correct_answer),
+                        proposition1 = removeSpecialCharFromString(result.results[i].incorrect_answers[0]),
+                        proposition2 = removeSpecialCharFromString(result.results[i].incorrect_answers[1]),
+                        proposition3 = removeSpecialCharFromString(result.results[i].incorrect_answers[2])
+                    )
+                    questionsArray.add(tmpQuestion)
+                }
+                startQuestionActivity()
+            }
+            1 -> {
+                Toast.makeText(this, "${resources.getString(R.string.no_results)}: ${resources.getString(R.string.no_results_msg)}", Toast.LENGTH_LONG).show()
+            }
+            2 -> {
+                Toast.makeText(this, "${resources.getString(R.string.invalid_parameter)}: ${resources.getString(R.string.invalid_parameter_msg)}", Toast.LENGTH_LONG).show()
+            }
+            3 -> {
+                Toast.makeText(this, "${resources.getString(R.string.token_not_found)}: ${resources.getString(R.string.token_not_found_msg)}", Toast.LENGTH_LONG).show()
+            }
+            4 -> {
+                Toast.makeText(this, "${resources.getString(R.string.token_empty)}: ${resources.getString(R.string.token_empty_msg)}", Toast.LENGTH_LONG).show()
+            }
         }
-        startQuestionActivity()
     }
 
     private fun startQuestionActivity() {
