@@ -1,15 +1,18 @@
 package alexandre.ladriere.thegeneralculturequiz
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 const val QUESTIONS_ARRAY = "QUESTIONS_ARRAY"
 
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private var questionsArray: ArrayList<Question> = ArrayList()
     private lateinit var categorySpinner: Spinner
     private lateinit var difficultySpinner: Spinner
+    private lateinit var seekBar: SeekBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,18 @@ class MainActivity : AppCompatActivity() {
         }
         categorySpinner = category_spinner
         difficultySpinner = difficulty_spinner
+        seekBar = a_main_seek_bar_question_count
+        seekBar.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar,
+                                           progress: Int, fromUser: Boolean) {
+                a_main_text_view_quesion_count.text = "$progress Questions"
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+        })
         initCategorySpinner()
         initDifficultySpinner()
     }
