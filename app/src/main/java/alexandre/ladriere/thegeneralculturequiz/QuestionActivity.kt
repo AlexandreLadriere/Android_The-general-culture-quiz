@@ -127,7 +127,7 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     private fun startQuestionReviewActivity() {
-        val intent = Intent(this, QuestionReviewActivity::class.java)
+        val intent = Intent(this, ScoreActivity::class.java)
         intent.putExtra(QUESTIONS_ARRAY, questionArray)
         this.startActivity(intent)
         this.finish()
