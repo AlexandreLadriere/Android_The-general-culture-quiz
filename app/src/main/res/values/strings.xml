@@ -2,4 +2,10 @@
     <string name="app_name">The General Culture Quiz</string>
     <string name="next">Next</string>
     <string name="question_review">Question review</string>
+    <string name="score_msg1">Do you have a brain ?</string>
+    <string name="score_msg2">You really suck at this game.</string>
+    <string name="score_msg3">You\'re almost not an idiot ;)</string>
+    <string name="score_msg4">Not bad !</string>
+    <string name="home">Home</string>
+    <string name="replay">Replay</string>
 </resources>

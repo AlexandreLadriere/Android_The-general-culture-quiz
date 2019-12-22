@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuestionReviewActivity"></activity>
+        <activity android:name=".ScoreActivity"></activity>
+        <activity android:name=".QuestionReviewActivity" />
         <activity android:name=".QuestionActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

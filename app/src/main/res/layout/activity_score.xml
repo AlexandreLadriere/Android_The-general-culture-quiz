@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScoreActivity"
+    android:background="@color/colorBackground">
+
+
+    <TextView
+        android:id="@+id/a_score_text_view_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="TextView"
+        android:textSize="32sp"
+        android:textColor="@color/colorText"
+        android:fontFamily="@font/nunito_sans"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/a_score_text_view_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/nunito_sans"
+        android:text="10/10"
+        android:textColor="@color/colorText"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a_score_text_view_msg" />
+
+    <Button
+        android:id="@+id/a_score_button_question_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/custom_rectangle_text_second_cr20_empty"
+        android:fontFamily="@font/nunito_sans"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:text="@string/question_review"
+        android:textAllCaps="false"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a_score_text_view_score" />
+
+    <Button
+        android:id="@+id/a_score_button_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/custom_rectangle_text_second_cr20_empty"
+        android:fontFamily="@font/nunito_sans"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:text="@string/home"
+        android:textAllCaps="false"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a_score_button_question_review" />
+
+    <Button
+        android:id="@+id/a_score_button_replay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/custom_rectangle_correct_cr20"
+        android:fontFamily="@font/nunito_sans"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:text="@string/replay"
+        android:textAllCaps="false"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/a_score_button_home" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
