@@ -1,5 +1,6 @@
 package alexandre.ladriere.thegeneralculturequiz
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -55,9 +56,6 @@ class QuestionActivity : AppCompatActivity() {
             updateQuestionActivity()
             resetPropositionBackground()
         }
-
-        //TODO check for null size
-        //TODO Parsing function
     }
 
     private fun clickListenerAction(button: Button) {
@@ -83,40 +81,41 @@ class QuestionActivity : AppCompatActivity() {
         if (currentPosition < questionArray.size && currentPosition >= 0) {
             questionNbTv.text = "${currentPosition+1}/10"
             categoryTv.text = questionArray[currentPosition].category
-            questionTv.text = removeSpecialCharFromString(questionArray[currentPosition].question)
+            questionTv.text = questionArray[currentPosition].question
             when ((0 until 4).random()) {
                 0 -> {
-                    proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    proposition1B.text = questionArray[currentPosition].correctAnswer
                     correctB = proposition1B
-                    proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
-                    proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
-                    proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
+                    proposition2B.text = questionArray[currentPosition].proposition1
+                    proposition3B.text = questionArray[currentPosition].proposition2
+                    proposition4B.text = questionArray[currentPosition].proposition3
                 }
                 1 -> {
-                    proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
-                    proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    proposition1B.text = questionArray[currentPosition].proposition1
+                    proposition2B.text = questionArray[currentPosition].correctAnswer
                     correctB = proposition2B
-                    proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
-                    proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
+                    proposition3B.text = questionArray[currentPosition].proposition2
+                    proposition4B.text = questionArray[currentPosition].proposition3
                 }
                 2 -> {
-                    proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
-                    proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
-                    proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    proposition1B.text = questionArray[currentPosition].proposition1
+                    proposition2B.text = questionArray[currentPosition].proposition2
+                    proposition3B.text = questionArray[currentPosition].correctAnswer
                     correctB = proposition3B
-                    proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
+                    proposition4B.text = questionArray[currentPosition].proposition3
                 }
                 3 -> {
-                    proposition1B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition1)
-                    proposition2B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition2)
-                    proposition3B.text = removeSpecialCharFromString(questionArray[currentPosition].proposition3)
-                    proposition4B.text = removeSpecialCharFromString(questionArray[currentPosition].correctAnswer)
+                    proposition1B.text = questionArray[currentPosition].proposition1
+                    proposition2B.text = questionArray[currentPosition].proposition2
+                    proposition3B.text = questionArray[currentPosition].proposition3
+                    proposition4B.text = questionArray[currentPosition].correctAnswer
                     correctB = proposition4B
                 }
             }
         }
         else {
-            this.finish()
+            //this.finish()
+            startQuestionReviewActivity()
         }
     }
 
@@ -125,5 +124,12 @@ class QuestionActivity : AppCompatActivity() {
         proposition2B.setBackgroundResource(R.drawable.custom_rectangle_text_second_cr20_empty)
         proposition3B.setBackgroundResource(R.drawable.custom_rectangle_text_second_cr20_empty)
         proposition4B.setBackgroundResource(R.drawable.custom_rectangle_text_second_cr20_empty)
+    }
+
+    private fun startQuestionReviewActivity() {
+        val intent = Intent(this, QuestionReviewActivity::class.java)
+        intent.putExtra(QUESTIONS_ARRAY, questionArray)
+        this.startActivity(intent)
+        this.finish()
     }
 }

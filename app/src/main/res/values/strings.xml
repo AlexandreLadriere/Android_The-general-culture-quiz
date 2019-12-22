@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">The General Culture Quiz</string>
     <string name="next">Next</string>
+    <string name="question_review">Question review</string>
 </resources>

@@ -61,11 +61,11 @@ class MainActivity : AppCompatActivity() {
                 category = result.results[i].category,
                 type = result.results[i].type,
                 difficulty = result.results[i].difficulty,
-                question = result.results[i].question,
-                correctAnswer = result.results[i].correct_answer,
-                proposition1 = result.results[i].incorrect_answers[0],
-                proposition2 = result.results[i].incorrect_answers[1],
-                proposition3 = result.results[i].incorrect_answers[2]
+                question = removeSpecialCharFromString(result.results[i].question),
+                correctAnswer = removeSpecialCharFromString(result.results[i].correct_answer),
+                proposition1 = removeSpecialCharFromString(result.results[i].incorrect_answers[0]),
+                proposition2 = removeSpecialCharFromString(result.results[i].incorrect_answers[1]),
+                proposition3 = removeSpecialCharFromString(result.results[i].incorrect_answers[2])
             )
             questionsArray.add(tmpQuestion)
         }
