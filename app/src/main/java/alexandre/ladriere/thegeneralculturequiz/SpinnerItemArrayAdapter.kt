@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.custom_spinner_item.view.*
 
-class SpinnerItemArrayAdapter(ctx: Context, moods: List<SpinnerItem>) : ArrayAdapter<SpinnerItem>(ctx, 0, moods) {
+class SpinnerItemArrayAdapter(ctx: Context, items: List<SpinnerItem>) : ArrayAdapter<SpinnerItem>(ctx, 0, items) {
 
     override fun getView(position: Int, recycledView: View?, parent: ViewGroup): View {
         return this.createView(position, recycledView, parent)
@@ -26,6 +26,10 @@ class SpinnerItemArrayAdapter(ctx: Context, moods: List<SpinnerItem>) : ArrayAda
         )
         view.spinner_item_title.text = spinnerItem!!.title
         return view
+    }
+
+    override fun getItem(position: Int): SpinnerItem? {
+        return super.getItem(position)
     }
 }
 

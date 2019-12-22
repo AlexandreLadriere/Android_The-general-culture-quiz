@@ -30,10 +30,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val startButton = a_main_button_start.setOnClickListener { view: View? ->
-            questionsArray.clear()
-            getQuestionsFromAPI()
-        }
         categorySpinner = category_spinner
         difficultySpinner = difficulty_spinner
         seekBar = a_main_seek_bar_question_count
@@ -50,6 +46,12 @@ class MainActivity : AppCompatActivity() {
         })
         initCategorySpinner()
         initDifficultySpinner()
+        val startButton = a_main_button_start.setOnClickListener { view: View? ->
+            questionsArray.clear()
+            val category = categorySpinner.adapter.getItem(categorySpinner.selectedItemPosition) as SpinnerItem
+            val difficulty = difficultySpinner.adapter.getItem(difficultySpinner.selectedItemPosition) as SpinnerItem
+            getQuestionsFromAPI(seekBar.progress.toString(), category.code, difficulty.code)
+        }
     }
 
     override fun onPause() {
