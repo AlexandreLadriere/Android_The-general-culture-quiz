@@ -2,11 +2,9 @@ package alexandre.ladriere.thegeneralculturequiz
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AbsListView
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_question_review.*
 
 class QuestionReviewActivity : AppCompatActivity() {
 
@@ -22,6 +20,9 @@ class QuestionReviewActivity : AppCompatActivity() {
         val adapter = QuestionReviewAdapter(questionArray)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+        val backB = a_question_review_image_button_back.setOnClickListener {
+            this.finish()
+        }
     }
 
     fun setQuestionList(questionList: ArrayList<Question>) {
