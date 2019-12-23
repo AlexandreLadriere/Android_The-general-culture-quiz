@@ -3,7 +3,6 @@ package alexandre.ladriere.thegeneralculturequiz
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.coroutines.coroutineContext
 
 class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
     RecyclerView.Adapter<QuestionReviewViewHolder>() {
@@ -23,6 +22,7 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
         }
         else {
             holder.itemView.setBackgroundResource(R.drawable.custom_rectangle_error_cr20_empty)
+            holder.answer.text = "Correct answer: $correctAnswer"
         }
     }
 
