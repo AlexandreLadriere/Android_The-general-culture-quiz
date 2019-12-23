@@ -149,4 +149,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/a_main_text_view_quesion_count" />
 
+    <ImageButton
+        android:id="@+id/a_main_image_button_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorBackground"
+        android:tint="@color/colorTextThird"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_star_24px" />
+
+    <ImageButton
+        android:id="@+id/a_main_image_button_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorBackground"
+        android:tint="@color/colorTextThird"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_history_24px" />
+
+    <ImageButton
+        android:id="@+id/a_main_image_button_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorBackground"
+        android:tint="@color/colorTextThird"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_info_24px" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
