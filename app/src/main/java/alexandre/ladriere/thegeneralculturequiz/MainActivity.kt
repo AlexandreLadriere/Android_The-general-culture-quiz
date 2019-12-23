@@ -51,6 +51,15 @@ class MainActivity : AppCompatActivity() {
             val difficulty = difficultySpinner.adapter.getItem(difficultySpinner.selectedItemPosition) as SpinnerItem
             getQuestionsFromAPI(seekBar.progress.toString(), category.code, difficulty.code)
         }
+        val successButton = a_main_image_button_success.setOnClickListener {
+            Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
+        }
+        val infoButton = a_main_image_button_info.setOnClickListener {
+            Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
+        }
+        val historyButton = a_main_image_button_history.setOnClickListener {
+            Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onPause() {
