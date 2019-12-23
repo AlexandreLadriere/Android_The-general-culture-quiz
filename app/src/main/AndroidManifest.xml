@@ -11,10 +11,14 @@
         android:roundIcon="@drawable/ic_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScoreActivity"></activity>
-        <activity android:name=".QuestionReviewActivity" />
-        <activity android:name=".QuestionActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ScoreActivity"
+            android:screenOrientation="sensorPortrait"></activity>
+        <activity android:name=".QuestionReviewActivity"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".QuestionActivity"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
