@@ -55,13 +55,29 @@ class QuestionActivity : AppCompatActivity() {
             currentPosition += 1
             updateQuestionActivity()
             resetPropositionBackground()
+            enablingButtonClick()
         }
     }
 
     private fun clickListenerAction(button: Button) {
         questionArray[currentPosition].correct =
             checkResponse(button, questionArray[currentPosition])
+        disablingButtonClick()
         nextB.visibility = Button.VISIBLE
+    }
+
+    private fun disablingButtonClick() {
+        proposition1B.isClickable = false
+        proposition2B.isClickable = false
+        proposition3B.isClickable = false
+        proposition4B.isClickable = false
+    }
+
+    private fun enablingButtonClick() {
+        proposition1B.isClickable = true
+        proposition2B.isClickable = true
+        proposition3B.isClickable = true
+        proposition4B.isClickable = true
     }
 
     private fun checkResponse(button: Button, question: Question): Boolean {
