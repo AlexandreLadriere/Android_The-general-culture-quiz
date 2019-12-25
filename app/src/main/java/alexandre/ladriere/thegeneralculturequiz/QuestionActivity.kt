@@ -23,6 +23,8 @@ class QuestionActivity : AppCompatActivity() {
     private lateinit var nextB: Button
     private lateinit var correctB: Button
 
+    private val questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
@@ -62,6 +64,7 @@ class QuestionActivity : AppCompatActivity() {
     private fun clickListenerAction(button: Button) {
         questionArray[currentPosition].correct =
             checkResponse(button, questionArray[currentPosition])
+        questionDao.insert(questionArray[currentPosition])
         disablingButtonClick()
         nextB.visibility = Button.VISIBLE
     }

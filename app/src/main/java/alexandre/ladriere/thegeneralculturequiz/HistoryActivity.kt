@@ -10,11 +10,11 @@ class HistoryActivity : AppCompatActivity() {
 
     private var questionArray: ArrayList<Question> = ArrayList()
     private val adapter = QuestionReviewAdapter(questionArray)
+    private val questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
-        val questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
         val recyclerView = findViewById<RecyclerView>(R.id.a_history_rcv)
         val layoutManager = LinearLayoutManager(this)
         val adapter = QuestionReviewAdapter(questionArray)

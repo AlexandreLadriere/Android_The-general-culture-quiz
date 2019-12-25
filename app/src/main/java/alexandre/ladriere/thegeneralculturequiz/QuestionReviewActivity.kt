@@ -25,7 +25,7 @@ class QuestionReviewActivity : AppCompatActivity() {
         }
     }
 
-    fun setQuestionList(questionList: ArrayList<Question>) {
+    private fun setQuestionList(questionList: ArrayList<Question>) {
         this.questionArray.clear()
         this.questionArray.addAll(questionList)
         adapter.notifyDataSetChanged()

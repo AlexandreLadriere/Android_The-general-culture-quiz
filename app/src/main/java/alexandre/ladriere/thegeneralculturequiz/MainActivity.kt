@@ -144,9 +144,6 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, QuestionActivity::class.java)
         intent.putExtra(QUESTIONS_ARRAY, questionsArray)
         this.startActivity(intent)
-        for(question in questionsArray) {
-            questionDao.insert(question)
-        }
         //this.finish()
     }
 
