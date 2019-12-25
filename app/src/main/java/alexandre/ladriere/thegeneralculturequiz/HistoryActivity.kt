@@ -23,7 +23,7 @@ class HistoryActivity : AppCompatActivity() {
         val backB = a_history_image_button_back.setOnClickListener {
             this.finish()
         }
-        setQuestionList(questionDao.getAll() as ArrayList<Question>)
+        setQuestionList(questionDao.getAll().reversed() as ArrayList<Question>)
     }
 
     private fun setQuestionList(questionList: ArrayList<Question>) {
