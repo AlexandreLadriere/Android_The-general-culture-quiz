@@ -4,25 +4,26 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_question_review.*
+import kotlinx.android.synthetic.main.activity_history.*
 
-class QuestionReviewActivity : AppCompatActivity() {
+class HistoryActivity : AppCompatActivity() {
 
     private var questionArray: ArrayList<Question> = ArrayList()
     private val adapter = QuestionReviewAdapter(questionArray)
+    private val questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_question_review)
-        questionArray = intent.getSerializableExtra(QUESTIONS_ARRAY) as ArrayList<Question>
-        val recyclerView = findViewById<RecyclerView>(R.id.a_question_review_rcv)
+        setContentView(R.layout.activity_history)
+        val recyclerView = findViewById<RecyclerView>(R.id.a_history_rcv)
         val layoutManager = LinearLayoutManager(this)
         val adapter = QuestionReviewAdapter(questionArray)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
-        val backB = a_question_review_image_button_back.setOnClickListener {
+        val backB = a_history_image_button_back.setOnClickListener {
             this.finish()
         }
+        setQuestionList(questionDao.getAll().reversed() as ArrayList<Question>)
     }
 
     private fun setQuestionList(questionList: ArrayList<Question>) {

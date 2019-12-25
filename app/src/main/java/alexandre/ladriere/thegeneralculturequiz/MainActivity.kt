@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var categorySpinner: Spinner
     private lateinit var difficultySpinner: Spinner
     private lateinit var seekBar: SeekBar
+    lateinit var questionDao: QuestionDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,8 +59,10 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
         }
         val historyButton = a_main_image_button_history.setOnClickListener {
-            Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, HistoryActivity::class.java)
+            this.startActivity(intent)
         }
+        questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
     }
 
     override fun onPause() {
