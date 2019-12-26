@@ -11,8 +11,10 @@
         android:roundIcon="@drawable/ic_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InfoActivity"></activity>
-        <activity android:name=".HistoryActivity" />
+        <activity android:name=".InfoActivity"
+            android:screenOrientation="sensorPortrait"></activity>
+        <activity android:name=".HistoryActivity"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".ScoreActivity"
             android:screenOrientation="sensorPortrait" />
