@@ -21,10 +21,9 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
         val (category, type, difficulty, question, correctAnswer, proposition1, proposition2, proposition3, correct) = this.questions[position]
         holder.question.text = question
         holder.answer.text = correctAnswer
-        if(correct) {
+        if (correct) {
             holder.itemView.setBackgroundResource(R.drawable.custom_rectangle_correct_cr20_empty)
-        }
-        else {
+        } else {
             holder.itemView.setBackgroundResource(R.drawable.custom_rectangle_error_cr20_empty)
             holder.answer.text = "Correct answer: $correctAnswer"
         }

@@ -100,7 +100,7 @@ class QuestionActivity : AppCompatActivity() {
     private fun updateQuestionActivity() {
         nextB.visibility = Button.INVISIBLE
         if (currentPosition < questionArray.size && currentPosition >= 0) {
-            questionNbTv.text = "${currentPosition+1}/${questionArray.size}"
+            questionNbTv.text = "${currentPosition + 1}/${questionArray.size}"
             categoryTv.text = questionArray[currentPosition].category
             questionTv.text = questionArray[currentPosition].question
             when ((0 until 4).random()) {
@@ -133,8 +133,7 @@ class QuestionActivity : AppCompatActivity() {
                     correctB = proposition4B
                 }
             }
-        }
-        else {
+        } else {
             //this.finish()
             startQuestionReviewActivity()
         }
