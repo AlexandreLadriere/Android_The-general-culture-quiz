@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var questionDao: QuestionDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         categorySpinner = category_spinner
