@@ -2,6 +2,7 @@ package alexandre.ladriere.thegeneralculturequiz
 
 import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import alexandre.ladriere.thegeneralculturequiz.questionsreview.QuestionReviewActivity
+import alexandre.ladriere.thegeneralculturequiz.utils.QUESTIONS_ARRAY
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -37,6 +38,7 @@ class ScoreActivity : AppCompatActivity() {
             this.finish()
         }
         restartB.setOnClickListener {
+            replay()
         }
     }
 
@@ -68,5 +70,11 @@ class ScoreActivity : AppCompatActivity() {
                 msgTV.text = resources.getString(R.string.score_msg4)
             }
         }
+    }
+
+    private fun replay() {
+        val returnIntent = Intent()
+        setResult(Activity.RESULT_OK, returnIntent)
+        finish()
     }
 }

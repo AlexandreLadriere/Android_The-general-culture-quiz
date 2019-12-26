@@ -1,8 +1,8 @@
 package alexandre.ladriere.thegeneralculturequiz.questionsreview
 
-import alexandre.ladriere.thegeneralculturequiz.QUESTIONS_ARRAY
 import alexandre.ladriere.thegeneralculturequiz.R
 import alexandre.ladriere.thegeneralculturequiz.questions.Question
+import alexandre.ladriere.thegeneralculturequiz.utils.QUESTIONS_ARRAY
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager

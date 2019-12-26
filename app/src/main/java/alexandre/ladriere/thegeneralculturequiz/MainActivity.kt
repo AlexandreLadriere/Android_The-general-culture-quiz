@@ -1,9 +1,7 @@
 package alexandre.ladriere.thegeneralculturequiz
 
 import alexandre.ladriere.thegeneralculturequiz.questions.*
-import alexandre.ladriere.thegeneralculturequiz.utils.SpinnerItem
-import alexandre.ladriere.thegeneralculturequiz.utils.SpinnerItemArrayAdapter
-import alexandre.ladriere.thegeneralculturequiz.utils.removeSpecialCharFromString
+import alexandre.ladriere.thegeneralculturequiz.utils.*
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -16,8 +14,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-
-const val QUESTIONS_ARRAY = "QUESTIONS_ARRAY"
 
 class MainActivity : AppCompatActivity() {
 
@@ -87,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         disposable?.dispose()
     }
 
-    private fun getQuestionsFromAPI(
+    fun getQuestionsFromAPI(
         pAmount: String = "10",
         pCategory: String = "",
         pDifficulty: String = "",
@@ -171,8 +167,16 @@ class MainActivity : AppCompatActivity() {
     private fun startQuestionActivity() {
         val intent = Intent(this, QuestionActivity::class.java)
         intent.putExtra(QUESTIONS_ARRAY, questionsArray)
-        startActivity(intent)
+        startActivityForResult(intent, RESTART_REQUEST_CODE)
         //this.finish()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RESTART_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
+            questionsArray.clear()
+            getQuestionsFromAPI(userQuestionNumber, userCategory, userDifficulty)
+        }
     }
 
     private fun initDifficultySpinner() {
