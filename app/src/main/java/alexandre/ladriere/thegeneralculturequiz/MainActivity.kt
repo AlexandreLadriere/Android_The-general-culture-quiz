@@ -35,12 +35,16 @@ class MainActivity : AppCompatActivity() {
         seekBar = a_main_seek_bar_question_count
         seekBar.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seek: SeekBar,
-                                           progress: Int, fromUser: Boolean) {
+            override fun onProgressChanged(
+                seek: SeekBar,
+                progress: Int, fromUser: Boolean
+            ) {
                 a_main_text_view_quesion_count.text = "$progress Questions"
             }
+
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
             }
+
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
             }
         })
@@ -48,15 +52,18 @@ class MainActivity : AppCompatActivity() {
         initDifficultySpinner()
         val startButton = a_main_button_start.setOnClickListener { view: View? ->
             questionsArray.clear()
-            val category = categorySpinner.adapter.getItem(categorySpinner.selectedItemPosition) as SpinnerItem
-            val difficulty = difficultySpinner.adapter.getItem(difficultySpinner.selectedItemPosition) as SpinnerItem
+            val category =
+                categorySpinner.adapter.getItem(categorySpinner.selectedItemPosition) as SpinnerItem
+            val difficulty =
+                difficultySpinner.adapter.getItem(difficultySpinner.selectedItemPosition) as SpinnerItem
             getQuestionsFromAPI(seekBar.progress.toString(), category.code, difficulty.code)
         }
         val successButton = a_main_image_button_success.setOnClickListener {
             Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
         }
         val infoButton = a_main_image_button_info.setOnClickListener {
-            Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, InfoActivity::class.java)
+            this.startActivity(intent)
         }
         val historyButton = a_main_image_button_history.setOnClickListener {
             val intent = Intent(this, HistoryActivity::class.java)
@@ -149,43 +156,47 @@ class MainActivity : AppCompatActivity() {
 
     private fun initDifficultySpinner() {
         difficultySpinner.adapter =
-            SpinnerItemArrayAdapter(this, listOf(
-                SpinnerItem("", "Any Difficulty"),
-                SpinnerItem("easy", "Easy"),
-                SpinnerItem("medium", "Medium"),
-                SpinnerItem("hard", "Hard")
-            ))
+            SpinnerItemArrayAdapter(
+                this, listOf(
+                    SpinnerItem("", "Any Difficulty"),
+                    SpinnerItem("easy", "Easy"),
+                    SpinnerItem("medium", "Medium"),
+                    SpinnerItem("hard", "Hard")
+                )
+            )
     }
 
     private fun initCategorySpinner() {
         categorySpinner.adapter =
-            SpinnerItemArrayAdapter(this, listOf(
-                SpinnerItem("", "Any Category"),
-                SpinnerItem("9", "General Knowledge"),
-                SpinnerItem("10", "Entertainment: Books"),
-                SpinnerItem("11", "Entertainment: Film"),
-                SpinnerItem("12", "Entertainment: Music"),
-                SpinnerItem("13", "Entertainment: Musicals & Theatres"),
-                SpinnerItem("14", "Entertainment: Television"),
-                SpinnerItem("15", "Entertainment: Video Games"),
-                SpinnerItem("16", "Entertainment: Board Games"),
-                SpinnerItem("17", "Science & Nature"),
-                SpinnerItem("18", "Science: Computers"),
-                SpinnerItem("19", "Science: Mathematics"),
-                SpinnerItem("20", "Mythology"),
-                SpinnerItem("21", "Sports"),
-                SpinnerItem("22", "Geography"),
-                SpinnerItem("23", "History"),
-                SpinnerItem("24", "Politics"),
-                SpinnerItem("25", "Art"),
-                SpinnerItem("26", "Celebrities"),
-                SpinnerItem("27", "Animals"),
-                SpinnerItem("28", "Vehicles"),
-                SpinnerItem("29", "Entertainment: Comics"),
-                SpinnerItem("30", "Science: Gadgets"),
-                SpinnerItem("31", "Entertainment: Japanese Anime & Manga"),
-                SpinnerItem("32", "Entertainment: Cartoon & Animations")
-                ))
+            SpinnerItemArrayAdapter(
+                this, listOf(
+                    SpinnerItem("", "Any Category"),
+                    SpinnerItem("9", "General Knowledge"),
+                    SpinnerItem("10", "Entertainment: Books"),
+                    SpinnerItem("11", "Entertainment: Film"),
+                    SpinnerItem("12", "Entertainment: Music"),
+                    SpinnerItem("13", "Entertainment: Musicals & Theatres"),
+                    SpinnerItem("14", "Entertainment: Television"),
+                    SpinnerItem("15", "Entertainment: Video Games"),
+                    SpinnerItem("16", "Entertainment: Board Games"),
+                    SpinnerItem("17", "Science & Nature"),
+                    SpinnerItem("18", "Science: Computers"),
+                    SpinnerItem("19", "Science: Mathematics"),
+                    SpinnerItem("20", "Mythology"),
+                    SpinnerItem("21", "Sports"),
+                    SpinnerItem("22", "Geography"),
+                    SpinnerItem("23", "History"),
+                    SpinnerItem("24", "Politics"),
+                    SpinnerItem("25", "Art"),
+                    SpinnerItem("26", "Celebrities"),
+                    SpinnerItem("27", "Animals"),
+                    SpinnerItem("28", "Vehicles"),
+                    SpinnerItem("29", "Entertainment: Comics"),
+                    SpinnerItem("30", "Science: Gadgets"),
+                    SpinnerItem("31", "Entertainment: Japanese Anime & Manga"),
+                    SpinnerItem("32", "Entertainment: Cartoon & Animations")
+                )
+            )
     }
 
     private fun hideSystemUI() {
