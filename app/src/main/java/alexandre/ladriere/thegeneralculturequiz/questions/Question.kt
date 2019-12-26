@@ -1,4 +1,4 @@
-package alexandre.ladriere.thegeneralculturequiz
+package alexandre.ladriere.thegeneralculturequiz.questions
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

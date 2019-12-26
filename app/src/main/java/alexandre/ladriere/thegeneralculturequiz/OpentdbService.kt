@@ -1,5 +1,6 @@
 package alexandre.ladriere.thegeneralculturequiz
 
+import alexandre.ladriere.thegeneralculturequiz.questions.QuestionModel
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

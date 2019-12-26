@@ -1,5 +1,6 @@
-package alexandre.ladriere.thegeneralculturequiz
+package alexandre.ladriere.thegeneralculturequiz.questionsreview
 
+import alexandre.ladriere.thegeneralculturequiz.R
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView

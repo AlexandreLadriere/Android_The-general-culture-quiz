@@ -1,5 +1,6 @@
-package alexandre.ladriere.thegeneralculturequiz
+package alexandre.ladriere.thegeneralculturequiz.questions
 
+import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert

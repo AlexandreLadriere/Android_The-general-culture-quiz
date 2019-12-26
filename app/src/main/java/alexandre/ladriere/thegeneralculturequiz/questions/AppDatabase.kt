@@ -1,4 +1,4 @@
-package alexandre.ladriere.thegeneralculturequiz
+package alexandre.ladriere.thegeneralculturequiz.questions
 
 import android.content.Context
 import androidx.room.Database

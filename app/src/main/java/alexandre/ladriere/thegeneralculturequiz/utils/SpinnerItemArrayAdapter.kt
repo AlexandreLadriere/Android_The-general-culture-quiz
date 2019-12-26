@@ -1,5 +1,6 @@
-package alexandre.ladriere.thegeneralculturequiz
+package alexandre.ladriere.thegeneralculturequiz.utils
 
+import alexandre.ladriere.thegeneralculturequiz.R
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View

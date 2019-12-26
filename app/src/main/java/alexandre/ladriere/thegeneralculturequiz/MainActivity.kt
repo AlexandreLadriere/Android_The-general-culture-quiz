@@ -1,5 +1,9 @@
 package alexandre.ladriere.thegeneralculturequiz
 
+import alexandre.ladriere.thegeneralculturequiz.questions.*
+import alexandre.ladriere.thegeneralculturequiz.utils.SpinnerItem
+import alexandre.ladriere.thegeneralculturequiz.utils.SpinnerItemArrayAdapter
+import alexandre.ladriere.thegeneralculturequiz.utils.removeSpecialCharFromString
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -102,16 +106,27 @@ class MainActivity : AppCompatActivity() {
         when (result.response_code) {
             0 -> {
                 for (i in 0 until result.results.size) {
-                    val tmpQuestion = Question(
-                        category = result.results[i].category,
-                        type = result.results[i].type,
-                        difficulty = result.results[i].difficulty,
-                        question = removeSpecialCharFromString(result.results[i].question),
-                        correctAnswer = removeSpecialCharFromString(result.results[i].correct_answer),
-                        proposition1 = removeSpecialCharFromString(result.results[i].incorrect_answers[0]),
-                        proposition2 = removeSpecialCharFromString(result.results[i].incorrect_answers[1]),
-                        proposition3 = removeSpecialCharFromString(result.results[i].incorrect_answers[2])
-                    )
+                    val tmpQuestion =
+                        Question(
+                            category = result.results[i].category,
+                            type = result.results[i].type,
+                            difficulty = result.results[i].difficulty,
+                            question = removeSpecialCharFromString(
+                                result.results[i].question
+                            ),
+                            correctAnswer = removeSpecialCharFromString(
+                                result.results[i].correct_answer
+                            ),
+                            proposition1 = removeSpecialCharFromString(
+                                result.results[i].incorrect_answers[0]
+                            ),
+                            proposition2 = removeSpecialCharFromString(
+                                result.results[i].incorrect_answers[1]
+                            ),
+                            proposition3 = removeSpecialCharFromString(
+                                result.results[i].incorrect_answers[2]
+                            )
+                        )
                     questionsArray.add(tmpQuestion)
                 }
                 startQuestionActivity()
@@ -158,10 +173,22 @@ class MainActivity : AppCompatActivity() {
         difficultySpinner.adapter =
             SpinnerItemArrayAdapter(
                 this, listOf(
-                    SpinnerItem("", "Any Difficulty"),
-                    SpinnerItem("easy", "Easy"),
-                    SpinnerItem("medium", "Medium"),
-                    SpinnerItem("hard", "Hard")
+                    SpinnerItem(
+                        "",
+                        "Any Difficulty"
+                    ),
+                    SpinnerItem(
+                        "easy",
+                        "Easy"
+                    ),
+                    SpinnerItem(
+                        "medium",
+                        "Medium"
+                    ),
+                    SpinnerItem(
+                        "hard",
+                        "Hard"
+                    )
                 )
             )
     }
@@ -170,31 +197,106 @@ class MainActivity : AppCompatActivity() {
         categorySpinner.adapter =
             SpinnerItemArrayAdapter(
                 this, listOf(
-                    SpinnerItem("", "Any Category"),
-                    SpinnerItem("9", "General Knowledge"),
-                    SpinnerItem("10", "Entertainment: Books"),
-                    SpinnerItem("11", "Entertainment: Film"),
-                    SpinnerItem("12", "Entertainment: Music"),
-                    SpinnerItem("13", "Entertainment: Musicals & Theatres"),
-                    SpinnerItem("14", "Entertainment: Television"),
-                    SpinnerItem("15", "Entertainment: Video Games"),
-                    SpinnerItem("16", "Entertainment: Board Games"),
-                    SpinnerItem("17", "Science & Nature"),
-                    SpinnerItem("18", "Science: Computers"),
-                    SpinnerItem("19", "Science: Mathematics"),
-                    SpinnerItem("20", "Mythology"),
-                    SpinnerItem("21", "Sports"),
-                    SpinnerItem("22", "Geography"),
-                    SpinnerItem("23", "History"),
-                    SpinnerItem("24", "Politics"),
-                    SpinnerItem("25", "Art"),
-                    SpinnerItem("26", "Celebrities"),
-                    SpinnerItem("27", "Animals"),
-                    SpinnerItem("28", "Vehicles"),
-                    SpinnerItem("29", "Entertainment: Comics"),
-                    SpinnerItem("30", "Science: Gadgets"),
-                    SpinnerItem("31", "Entertainment: Japanese Anime & Manga"),
-                    SpinnerItem("32", "Entertainment: Cartoon & Animations")
+                    SpinnerItem(
+                        "",
+                        "Any Category"
+                    ),
+                    SpinnerItem(
+                        "9",
+                        "General Knowledge"
+                    ),
+                    SpinnerItem(
+                        "10",
+                        "Entertainment: Books"
+                    ),
+                    SpinnerItem(
+                        "11",
+                        "Entertainment: Film"
+                    ),
+                    SpinnerItem(
+                        "12",
+                        "Entertainment: Music"
+                    ),
+                    SpinnerItem(
+                        "13",
+                        "Entertainment: Musicals & Theatres"
+                    ),
+                    SpinnerItem(
+                        "14",
+                        "Entertainment: Television"
+                    ),
+                    SpinnerItem(
+                        "15",
+                        "Entertainment: Video Games"
+                    ),
+                    SpinnerItem(
+                        "16",
+                        "Entertainment: Board Games"
+                    ),
+                    SpinnerItem(
+                        "17",
+                        "Science & Nature"
+                    ),
+                    SpinnerItem(
+                        "18",
+                        "Science: Computers"
+                    ),
+                    SpinnerItem(
+                        "19",
+                        "Science: Mathematics"
+                    ),
+                    SpinnerItem(
+                        "20",
+                        "Mythology"
+                    ),
+                    SpinnerItem(
+                        "21",
+                        "Sports"
+                    ),
+                    SpinnerItem(
+                        "22",
+                        "Geography"
+                    ),
+                    SpinnerItem(
+                        "23",
+                        "History"
+                    ),
+                    SpinnerItem(
+                        "24",
+                        "Politics"
+                    ),
+                    SpinnerItem(
+                        "25",
+                        "Art"
+                    ),
+                    SpinnerItem(
+                        "26",
+                        "Celebrities"
+                    ),
+                    SpinnerItem(
+                        "27",
+                        "Animals"
+                    ),
+                    SpinnerItem(
+                        "28",
+                        "Vehicles"
+                    ),
+                    SpinnerItem(
+                        "29",
+                        "Entertainment: Comics"
+                    ),
+                    SpinnerItem(
+                        "30",
+                        "Science: Gadgets"
+                    ),
+                    SpinnerItem(
+                        "31",
+                        "Entertainment: Japanese Anime & Manga"
+                    ),
+                    SpinnerItem(
+                        "32",
+                        "Entertainment: Cartoon & Animations"
+                    )
                 )
             )
     }

@@ -1,5 +1,7 @@
 package alexandre.ladriere.thegeneralculturequiz
 
+import alexandre.ladriere.thegeneralculturequiz.questions.Question
+import alexandre.ladriere.thegeneralculturequiz.questionsreview.QuestionReviewActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

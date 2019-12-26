@@ -1,5 +1,7 @@
-package alexandre.ladriere.thegeneralculturequiz
+package alexandre.ladriere.thegeneralculturequiz.questionsreview
 
+import alexandre.ladriere.thegeneralculturequiz.R
+import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +12,9 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionReviewViewHolder {
         val row = LayoutInflater.from(parent.context)
             .inflate(R.layout.question_review_item, parent, false)
-        return QuestionReviewViewHolder(row)
+        return QuestionReviewViewHolder(
+            row
+        )
     }
 
     override fun onBindViewHolder(holder: QuestionReviewViewHolder, position: Int) {

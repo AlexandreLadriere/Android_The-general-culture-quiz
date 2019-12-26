@@ -1,4 +1,4 @@
-package alexandre.ladriere.thegeneralculturequiz
+package alexandre.ladriere.thegeneralculturequiz.utils
 
 import android.graphics.Outline
 import android.os.Build

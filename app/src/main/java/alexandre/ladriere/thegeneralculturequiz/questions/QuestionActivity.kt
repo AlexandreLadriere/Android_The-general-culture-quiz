@@ -1,9 +1,9 @@
-package alexandre.ladriere.thegeneralculturequiz
+package alexandre.ladriere.thegeneralculturequiz.questions
 
+import alexandre.ladriere.thegeneralculturequiz.*
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_question.*
@@ -23,7 +23,9 @@ class QuestionActivity : AppCompatActivity() {
     private lateinit var nextB: Button
     private lateinit var correctB: Button
 
-    private val questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
+    private val questionDao = AppDatabase.getAppDatabase(
+        this
+    ).getQuestionDao()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

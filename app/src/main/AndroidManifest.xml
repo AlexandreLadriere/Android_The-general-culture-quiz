@@ -17,10 +17,10 @@
             android:name=".ScoreActivity"
             android:screenOrientation="sensorPortrait" />
         <activity
-            android:name=".QuestionReviewActivity"
+            android:name=".questionsreview.QuestionReviewActivity"
             android:screenOrientation="sensorPortrait" />
         <activity
-            android:name=".QuestionActivity"
+            android:name=".questions.QuestionActivity"
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".MainActivity"
