@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var categorySpinner: Spinner
     private lateinit var difficultySpinner: Spinner
     private lateinit var seekBar: SeekBar
+    private lateinit var userDifficulty: String
+    private lateinit var userCategory: String
+    private lateinit var userQuestionNumber: String
     lateinit var questionDao: QuestionDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +63,10 @@ class MainActivity : AppCompatActivity() {
                 categorySpinner.adapter.getItem(categorySpinner.selectedItemPosition) as SpinnerItem
             val difficulty =
                 difficultySpinner.adapter.getItem(difficultySpinner.selectedItemPosition) as SpinnerItem
-            getQuestionsFromAPI(seekBar.progress.toString(), category.code, difficulty.code)
+            userCategory = category.code
+            userDifficulty = difficulty.code
+            userQuestionNumber = seekBar.progress.toString()
+            getQuestionsFromAPI(userQuestionNumber, userCategory, userDifficulty)
         }
         val successButton = a_main_image_button_success.setOnClickListener {
             Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
