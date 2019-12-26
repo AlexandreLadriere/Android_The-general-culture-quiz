@@ -20,6 +20,6 @@ interface QuestionDAO {
     @Query("SELECT * FROM question WHERE category LIKE :queryCategory")
     fun findByCategory(queryCategory: String): List<Question>
 
-    @Query("SELECT * FROM question WHERE category LIKE :queryQuestion")
+    @Query("SELECT * FROM question WHERE question LIKE :queryQuestion")
     fun findByQuestion(queryQuestion: String): Question
 }

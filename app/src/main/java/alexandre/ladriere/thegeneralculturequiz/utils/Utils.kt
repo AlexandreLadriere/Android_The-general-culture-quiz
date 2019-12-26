@@ -21,6 +21,7 @@ internal fun removeSpecialCharFromString(string: String): String {
     outStr = outStr.replace("&ouml;", "ö")
     outStr = outStr.replace("&uuml;", "ü")
     outStr = outStr.replace("&pi;", "π")
+    outStr = outStr.replace("&atilde;", "ã")
     return outStr
 }
 

@@ -2,11 +2,13 @@ package alexandre.ladriere.thegeneralculturequiz
 
 import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import alexandre.ladriere.thegeneralculturequiz.questionsreview.QuestionReviewActivity
+import alexandre.ladriere.thegeneralculturequiz.utils.QUESTIONS_ARRAY
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_score.*
 
@@ -36,8 +38,7 @@ class ScoreActivity : AppCompatActivity() {
             this.finish()
         }
         restartB.setOnClickListener {
-            // TODO: implements restart functionality
-            this.finish()
+            replay()
         }
     }
 
@@ -69,5 +70,11 @@ class ScoreActivity : AppCompatActivity() {
                 msgTV.text = resources.getString(R.string.score_msg4)
             }
         }
+    }
+
+    private fun replay() {
+        val returnIntent = Intent()
+        setResult(Activity.RESULT_OK, returnIntent)
+        finish()
     }
 }

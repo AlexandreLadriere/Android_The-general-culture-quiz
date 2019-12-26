@@ -1,9 +1,8 @@
 package alexandre.ladriere.thegeneralculturequiz
 
 import alexandre.ladriere.thegeneralculturequiz.questions.*
-import alexandre.ladriere.thegeneralculturequiz.utils.SpinnerItem
-import alexandre.ladriere.thegeneralculturequiz.utils.SpinnerItemArrayAdapter
-import alexandre.ladriere.thegeneralculturequiz.utils.removeSpecialCharFromString
+import alexandre.ladriere.thegeneralculturequiz.utils.*
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -16,9 +15,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
-
-const val QUESTIONS_ARRAY = "QUESTIONS_ARRAY"
-
 class MainActivity : AppCompatActivity() {
 
     private val opentdbServe by lazy {
@@ -29,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var categorySpinner: Spinner
     private lateinit var difficultySpinner: Spinner
     private lateinit var seekBar: SeekBar
+    private lateinit var userDifficulty: String
+    private lateinit var userCategory: String
+    private lateinit var userQuestionNumber: String
     lateinit var questionDao: QuestionDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +59,10 @@ class MainActivity : AppCompatActivity() {
                 categorySpinner.adapter.getItem(categorySpinner.selectedItemPosition) as SpinnerItem
             val difficulty =
                 difficultySpinner.adapter.getItem(difficultySpinner.selectedItemPosition) as SpinnerItem
-            getQuestionsFromAPI(seekBar.progress.toString(), category.code, difficulty.code)
+            userCategory = category.code
+            userDifficulty = difficulty.code
+            userQuestionNumber = seekBar.progress.toString()
+            getQuestionsFromAPI(userQuestionNumber, userCategory, userDifficulty)
         }
         val successButton = a_main_image_button_success.setOnClickListener {
             Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show()
@@ -81,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         disposable?.dispose()
     }
 
-    private fun getQuestionsFromAPI(
+    fun getQuestionsFromAPI(
         pAmount: String = "10",
         pCategory: String = "",
         pDifficulty: String = "",
@@ -165,8 +167,16 @@ class MainActivity : AppCompatActivity() {
     private fun startQuestionActivity() {
         val intent = Intent(this, QuestionActivity::class.java)
         intent.putExtra(QUESTIONS_ARRAY, questionsArray)
-        this.startActivity(intent)
+        startActivityForResult(intent, RESTART_REQUEST_CODE)
         //this.finish()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RESTART_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
+            questionsArray.clear()
+            getQuestionsFromAPI(userQuestionNumber, userCategory, userDifficulty)
+        }
     }
 
     private fun initDifficultySpinner() {

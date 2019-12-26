@@ -1,6 +1,7 @@
 package alexandre.ladriere.thegeneralculturequiz.questions
 
 import alexandre.ladriere.thegeneralculturequiz.*
+import alexandre.ladriere.thegeneralculturequiz.utils.QUESTIONS_ARRAY
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -66,7 +67,9 @@ class QuestionActivity : AppCompatActivity() {
     private fun clickListenerAction(button: Button) {
         questionArray[currentPosition].correct =
             checkResponse(button, questionArray[currentPosition])
-        questionDao.insert(questionArray[currentPosition])
+        if(questionDao.findByQuestion(questionArray[currentPosition].question) == null) {
+            questionDao.insert(questionArray[currentPosition])
+        }
         disablingButtonClick()
         nextB.visibility = Button.VISIBLE
     }
@@ -148,6 +151,7 @@ class QuestionActivity : AppCompatActivity() {
 
     private fun startQuestionReviewActivity() {
         val intent = Intent(this, ScoreActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
         intent.putExtra(QUESTIONS_ARRAY, questionArray)
         this.startActivity(intent)
         this.finish()
