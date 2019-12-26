@@ -66,7 +66,9 @@ class QuestionActivity : AppCompatActivity() {
     private fun clickListenerAction(button: Button) {
         questionArray[currentPosition].correct =
             checkResponse(button, questionArray[currentPosition])
-        questionDao.insert(questionArray[currentPosition])
+        if(questionDao.findByQuestion(questionArray[currentPosition].question) == null) {
+            questionDao.insert(questionArray[currentPosition])
+        }
         disablingButtonClick()
         nextB.visibility = Button.VISIBLE
     }

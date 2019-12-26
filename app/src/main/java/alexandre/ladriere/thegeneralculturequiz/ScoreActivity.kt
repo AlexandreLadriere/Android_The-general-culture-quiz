@@ -2,11 +2,12 @@ package alexandre.ladriere.thegeneralculturequiz
 
 import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import alexandre.ladriere.thegeneralculturequiz.questionsreview.QuestionReviewActivity
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_score.*
 
@@ -36,8 +37,6 @@ class ScoreActivity : AppCompatActivity() {
             this.finish()
         }
         restartB.setOnClickListener {
-            // TODO: implements restart functionality
-            this.finish()
         }
     }
 

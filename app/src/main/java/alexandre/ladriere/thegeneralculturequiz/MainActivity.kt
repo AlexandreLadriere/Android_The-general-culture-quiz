@@ -4,6 +4,7 @@ import alexandre.ladriere.thegeneralculturequiz.questions.*
 import alexandre.ladriere.thegeneralculturequiz.utils.SpinnerItem
 import alexandre.ladriere.thegeneralculturequiz.utils.SpinnerItemArrayAdapter
 import alexandre.ladriere.thegeneralculturequiz.utils.removeSpecialCharFromString
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -15,7 +16,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-
 
 const val QUESTIONS_ARRAY = "QUESTIONS_ARRAY"
 
@@ -171,7 +171,7 @@ class MainActivity : AppCompatActivity() {
     private fun startQuestionActivity() {
         val intent = Intent(this, QuestionActivity::class.java)
         intent.putExtra(QUESTIONS_ARRAY, questionsArray)
-        this.startActivity(intent)
+        startActivity(intent)
         //this.finish()
     }
 
