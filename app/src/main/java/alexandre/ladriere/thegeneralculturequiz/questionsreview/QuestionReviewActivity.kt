@@ -33,10 +33,4 @@ class QuestionReviewActivity : AppCompatActivity() {
             this.finish()
         }
     }
-
-    private fun setQuestionList(questionList: ArrayList<Question>) {
-        this.questionArray.clear()
-        this.questionArray.addAll(questionList)
-        adapter.notifyDataSetChanged()
-    }
 }
