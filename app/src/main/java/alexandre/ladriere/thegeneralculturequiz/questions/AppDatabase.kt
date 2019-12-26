@@ -1,4 +1,4 @@
-package alexandre.ladriere.thegeneralculturequiz
+package alexandre.ladriere.thegeneralculturequiz.questions
 
 import android.content.Context
 import androidx.room.Database
@@ -17,9 +17,11 @@ abstract class AppDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(AppDatabase::class) {
                     INSTANCE = Room
-                        .databaseBuilder(context.applicationContext,
+                        .databaseBuilder(
+                            context.applicationContext,
                             AppDatabase::class.java,
-                            "db")
+                            "db"
+                        )
                         .allowMainThreadQueries()
                         .fallbackToDestructiveMigration()
                         .build()

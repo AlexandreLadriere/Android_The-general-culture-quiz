@@ -1,5 +1,7 @@
 package alexandre.ladriere.thegeneralculturequiz
 
+import alexandre.ladriere.thegeneralculturequiz.questions.Question
+import alexandre.ladriere.thegeneralculturequiz.questionsreview.QuestionReviewActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -41,9 +43,9 @@ class ScoreActivity : AppCompatActivity() {
 
     private fun calculateScore(): Int {
         var score: Int = 0
-        for(question in questionArray) {
-            if(question.correct) {
-                score+=1
+        for (question in questionArray) {
+            if (question.correct) {
+                score += 1
             }
         }
         return score
@@ -52,21 +54,18 @@ class ScoreActivity : AppCompatActivity() {
     private fun displayScore() {
         val score = calculateScore()
         scoreTV.text = "$score/${questionArray.size}"
-        if(score < questionArray.size/2) {
+        if (score < questionArray.size / 2) {
             scoreTV.setTextColor(ContextCompat.getColor(this, R.color.colorError))
-            if(score <= questionArray.size/4) {
+            if (score <= questionArray.size / 4) {
                 msgTV.text = resources.getString(R.string.score_msg1)
-            }
-            else {
+            } else {
                 msgTV.text = resources.getString(R.string.score_msg2)
             }
-        }
-        else {
+        } else {
             scoreTV.setTextColor(ContextCompat.getColor(this, R.color.colorCorrect))
-            if(score <= questionArray.size/2 + questionArray.size/4) {
+            if (score <= questionArray.size / 2 + questionArray.size / 4) {
                 msgTV.text = resources.getString(R.string.score_msg3)
-            }
-            else {
+            } else {
                 msgTV.text = resources.getString(R.string.score_msg4)
             }
         }

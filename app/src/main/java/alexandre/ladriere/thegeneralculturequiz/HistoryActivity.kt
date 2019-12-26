@@ -1,5 +1,8 @@
 package alexandre.ladriere.thegeneralculturequiz
 
+import alexandre.ladriere.thegeneralculturequiz.questions.AppDatabase
+import alexandre.ladriere.thegeneralculturequiz.questions.Question
+import alexandre.ladriere.thegeneralculturequiz.questionsreview.QuestionReviewAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,7 +12,10 @@ import kotlinx.android.synthetic.main.activity_history.*
 class HistoryActivity : AppCompatActivity() {
 
     private var questionArray: ArrayList<Question> = ArrayList()
-    private val adapter = QuestionReviewAdapter(questionArray)
+    private val adapter =
+        QuestionReviewAdapter(
+            questionArray
+        )
     private val questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +23,10 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history)
         val recyclerView = findViewById<RecyclerView>(R.id.a_history_rcv)
         val layoutManager = LinearLayoutManager(this)
-        val adapter = QuestionReviewAdapter(questionArray)
+        val adapter =
+            QuestionReviewAdapter(
+                questionArray
+            )
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         val backB = a_history_image_button_back.setOnClickListener {

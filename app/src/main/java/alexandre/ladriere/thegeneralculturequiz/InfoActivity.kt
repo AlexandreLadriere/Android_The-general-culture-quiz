@@ -1,5 +1,6 @@
 package alexandre.ladriere.thegeneralculturequiz
 
+import alexandre.ladriere.thegeneralculturequiz.utils.curveImageViewCorner
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_info.*
@@ -12,6 +13,9 @@ class InfoActivity : AppCompatActivity() {
         val backB = a_info_image_button_back.setOnClickListener {
             this.finish()
         }
-        curveImageViewCorner(a_info_image_view_author, 30F)
+        curveImageViewCorner(
+            a_info_image_view_author,
+            30F
+        )
     }
 }

@@ -1,4 +1,4 @@
-package alexandre.ladriere.thegeneralculturequiz
+package alexandre.ladriere.thegeneralculturequiz.questions
 
 object QuestionModel {
     data class Response(val response_code: Int, val results: Array<Question>)
