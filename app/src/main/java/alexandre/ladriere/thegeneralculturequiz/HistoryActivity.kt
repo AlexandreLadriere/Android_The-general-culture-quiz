@@ -3,8 +3,9 @@ package alexandre.ladriere.thegeneralculturequiz
 import alexandre.ladriere.thegeneralculturequiz.questions.AppDatabase
 import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import alexandre.ladriere.thegeneralculturequiz.questionsreview.QuestionReviewAdapter
+import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,6 +48,14 @@ class HistoryActivity : AppCompatActivity() {
                 return true
             }
         })
+        searchView.setOnClickListener {
+            val imm = baseContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+            searchView.isFocusable = true
+            searchView.isIconified = false
+            searchView.clearFocus()
+            searchView.requestFocusFromTouch()
+        }
     }
 
     private fun setQuestionList(questionList: ArrayList<Question>) {
