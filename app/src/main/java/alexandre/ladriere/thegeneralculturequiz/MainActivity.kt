@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userDifficulty: String
     private lateinit var userCategory: String
     private lateinit var userQuestionNumber: String
+    private lateinit var viewDialog: ViewDialog
     lateinit var questionDao: QuestionDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
             this.startActivity(intent)
         }
         questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
+        viewDialog = ViewDialog(this)
     }
 
     override fun onPause() {
@@ -90,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         pDifficulty: String = "",
         pType: String = "multiple"
     ) {
+        viewDialog.showDialog()
         disposable =
             opentdbServe.getQuestions(
                 pAmount,
@@ -169,6 +172,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, QuestionActivity::class.java)
         intent.putExtra(QUESTIONS_ARRAY, questionsArray)
         startActivityForResult(intent, RESTART_REQUEST_CODE)
+        viewDialog.hideDialog()
         //this.finish()
     }
 
