@@ -2,12 +2,20 @@ package alexandre.ladriere.thegeneralculturequiz.questionsreview
 
 import alexandre.ladriere.thegeneralculturequiz.R
 import alexandre.ladriere.thegeneralculturequiz.questions.Question
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import java.util.Collections.addAll
 
 class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
     RecyclerView.Adapter<QuestionReviewViewHolder>() {
+
+    private val itemsCopy: ArrayList<Question> = ArrayList()
+
+    init {
+        itemsCopy.addAll(questions)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionReviewViewHolder {
         val row = LayoutInflater.from(parent.context)
@@ -31,5 +39,22 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
 
     override fun getItemCount(): Int {
         return this.questions.size
+    }
+
+    @SuppressLint("DefaultLocale")
+    fun filter(txt: String) {
+        var text = txt
+        questions.clear()
+        if (text.isEmpty()) {
+            questions.addAll(itemsCopy)
+        } else {
+            text = text.toLowerCase()
+            for (item in itemsCopy) {
+                if (item.question.toLowerCase().contains(text) || item.correctAnswer.toLowerCase().contains(text)) {
+                    questions.add(item)
+                }
+            }
+        }
+        notifyDataSetChanged()
     }
 }

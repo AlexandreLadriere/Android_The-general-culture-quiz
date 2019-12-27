@@ -58,16 +58,31 @@
         app:layout_constraintTop_toBottomOf="@id/a_history_linear_layout_top"
         app:srcCompat="@drawable/custom_dotted_line" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/a_history_rcv"
+    <SearchView
+        android:id="@+id/a_history_search_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        android:background="@color/colorBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/custom_rectangle_text_cr20"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:queryHint="@string/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/a_history_image_view_dotted_line" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/a_history_rcv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/a_history_search_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
