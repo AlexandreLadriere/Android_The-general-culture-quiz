@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import java.util.Collections.addAll
 
-class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
+class QuestionReviewAdapter(private val questions: ArrayList<Question>, private val favQuestion: (Int) -> Unit) :
     RecyclerView.Adapter<QuestionReviewViewHolder>() {
 
     private val itemsCopy: ArrayList<Question> = ArrayList()
@@ -21,12 +21,13 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
         val row = LayoutInflater.from(parent.context)
             .inflate(R.layout.question_review_item, parent, false)
         return QuestionReviewViewHolder(
-            row
+            row,
+            favQuestion
         )
     }
 
     override fun onBindViewHolder(holder: QuestionReviewViewHolder, position: Int) {
-        val (category, type, difficulty, question, correctAnswer, proposition1, proposition2, proposition3, correct) = this.questions[position]
+        val (category, type, difficulty, question, correctAnswer, proposition1, proposition2, proposition3, correct, favorite) = this.questions[position]
         holder.question.text = question
         holder.answer.text = correctAnswer
         if (correct) {
@@ -34,6 +35,12 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
         } else {
             holder.itemView.setBackgroundResource(R.drawable.custom_rectangle_error_cr20_empty)
             holder.answer.text = "Correct answer: $correctAnswer"
+        }
+        if(favorite) {
+            holder.favorite.setImageResource(R.drawable.ic_favorite_24px)
+        }
+        else {
+            holder.favorite.setImageResource(R.drawable.ic_favorite_border_24px)
         }
     }
 
@@ -62,6 +69,16 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
         questions.clear()
         for(item in itemsCopy) {
             if(item.correct == para) {
+                questions.add(item)
+            }
+        }
+        notifyDataSetChanged()
+    }
+
+    fun filterFav(para: Boolean) {
+        questions.clear()
+        for(item in itemsCopy) {
+            if(item.favorite == para) {
                 questions.add(item)
             }
         }

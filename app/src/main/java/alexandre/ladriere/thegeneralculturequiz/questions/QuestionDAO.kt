@@ -1,6 +1,5 @@
 package alexandre.ladriere.thegeneralculturequiz.questions
 
-import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -22,4 +21,7 @@ interface QuestionDAO {
 
     @Query("SELECT * FROM question WHERE question LIKE :queryQuestion")
     fun findByQuestion(queryQuestion: String): Question
+
+    @Query("UPDATE question SET favorite = :queryFav WHERE question = :queryQuestion")
+    fun updateQuestionFav(queryQuestion: String, queryFav: Boolean)
 }

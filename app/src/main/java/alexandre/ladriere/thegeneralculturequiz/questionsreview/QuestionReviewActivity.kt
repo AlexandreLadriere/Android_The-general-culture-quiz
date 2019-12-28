@@ -1,10 +1,12 @@
 package alexandre.ladriere.thegeneralculturequiz.questionsreview
 
 import alexandre.ladriere.thegeneralculturequiz.R
+import alexandre.ladriere.thegeneralculturequiz.questions.AppDatabase
 import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import alexandre.ladriere.thegeneralculturequiz.utils.QUESTIONS_ARRAY
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_question_review.*
@@ -12,10 +14,14 @@ import kotlinx.android.synthetic.main.activity_question_review.*
 class QuestionReviewActivity : AppCompatActivity() {
 
     private var questionArray: ArrayList<Question> = ArrayList()
-    private val adapter =
+    private var adapter =
         QuestionReviewAdapter(
-            questionArray
+            questionArray,
+            ::favQuestion
         )
+    private val questionDao = AppDatabase.getAppDatabase(
+        this
+    ).getQuestionDao()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,14 +29,23 @@ class QuestionReviewActivity : AppCompatActivity() {
         questionArray = intent.getSerializableExtra(QUESTIONS_ARRAY) as ArrayList<Question>
         val recyclerView = findViewById<RecyclerView>(R.id.a_question_review_rcv)
         val layoutManager = LinearLayoutManager(this)
-        val adapter =
+        adapter =
             QuestionReviewAdapter(
-                questionArray
+                questionArray,
+                ::favQuestion
             )
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         val backB = a_question_review_image_button_back.setOnClickListener {
             this.finish()
         }
+    }
+
+    private fun favQuestion(position: Int) {
+        val tmpQuestion = this.questionArray[position]
+        tmpQuestion.favorite = !this.questionArray[position].favorite
+        questionDao.updateQuestionFav(tmpQuestion.question, tmpQuestion.favorite)
+        questionArray[position] = tmpQuestion
+        adapter.notifyItemChanged(position)
     }
 }
