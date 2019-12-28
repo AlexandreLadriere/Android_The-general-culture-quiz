@@ -3,10 +3,16 @@ package alexandre.ladriere.thegeneralculturequiz
 import alexandre.ladriere.thegeneralculturequiz.questions.AppDatabase
 import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import alexandre.ladriere.thegeneralculturequiz.questionsreview.QuestionReviewAdapter
+import alexandre.ladriere.thegeneralculturequiz.utils.SpinnerItem
+import alexandre.ladriere.thegeneralculturequiz.utils.SpinnerItemArrayAdapter
 import alexandre.ladriere.thegeneralculturequiz.utils.ViewAnimation
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +29,7 @@ class HistoryActivity : AppCompatActivity() {
         )
     private val questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
     private var isRotate = false
+    private lateinit var categorySpinner: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +66,8 @@ class HistoryActivity : AppCompatActivity() {
             searchView.clearFocus()
             searchView.requestFocusFromTouch()
         }
+        categorySpinner = a_history_category_spinner
+        initCategorySpinner()
         val fab = a_history_fab
         val fabSort = a_history_fab_sort
         val fabFav = a_history_fab_fav
@@ -87,25 +96,159 @@ class HistoryActivity : AppCompatActivity() {
             }
         }
         fabSort.setOnClickListener { view ->
-            Toast.makeText(this, "Sort", Toast.LENGTH_SHORT).show()
+            categorySpinner.performClick()
         }
         fabFav.setOnClickListener { view ->
             Toast.makeText(this, "Fav", Toast.LENGTH_SHORT).show()
         }
         fabCorrect.setOnClickListener { view ->
-            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show()
+            adapter.filterCorrect(true)
         }
         fabFalse.setOnClickListener { view ->
-            Toast.makeText(this, "False", Toast.LENGTH_SHORT).show()
+            adapter.filterCorrect(false)
         }
         fabClear.setOnClickListener { view ->
-            Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show()
+            adapter.filter("")
         }
+
+        categorySpinner.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+                val category =
+                    categorySpinner.adapter.getItem(position) as SpinnerItem
+                if(category.code == "") {
+                    adapter.filter(category.code)
+                }
+                else {
+                    Toast.makeText(baseContext, category.title, Toast.LENGTH_SHORT).show()
+                    adapter.filterCategory(category.title)
+                }
+            }
+        }
+
     }
 
     private fun setQuestionList(questionList: ArrayList<Question>) {
         this.questionArray.clear()
         this.questionArray.addAll(questionList)
         adapter.notifyDataSetChanged()
+    }
+
+
+
+    private fun initCategorySpinner() {
+        categorySpinner.adapter =
+            SpinnerItemArrayAdapter(
+                this, listOf(
+                    SpinnerItem(
+                        "",
+                        "Any Category"
+                    ),
+                    SpinnerItem(
+                        "9",
+                        "General Knowledge"
+                    ),
+                    SpinnerItem(
+                        "10",
+                        "Entertainment: Books"
+                    ),
+                    SpinnerItem(
+                        "11",
+                        "Entertainment: Film"
+                    ),
+                    SpinnerItem(
+                        "12",
+                        "Entertainment: Music"
+                    ),
+                    SpinnerItem(
+                        "13",
+                        "Entertainment: Musicals & Theatres"
+                    ),
+                    SpinnerItem(
+                        "14",
+                        "Entertainment: Television"
+                    ),
+                    SpinnerItem(
+                        "15",
+                        "Entertainment: Video Games"
+                    ),
+                    SpinnerItem(
+                        "16",
+                        "Entertainment: Board Games"
+                    ),
+                    SpinnerItem(
+                        "17",
+                        "Science & Nature"
+                    ),
+                    SpinnerItem(
+                        "18",
+                        "Science: Computers"
+                    ),
+                    SpinnerItem(
+                        "19",
+                        "Science: Mathematics"
+                    ),
+                    SpinnerItem(
+                        "20",
+                        "Mythology"
+                    ),
+                    SpinnerItem(
+                        "21",
+                        "Sports"
+                    ),
+                    SpinnerItem(
+                        "22",
+                        "Geography"
+                    ),
+                    SpinnerItem(
+                        "23",
+                        "History"
+                    ),
+                    SpinnerItem(
+                        "24",
+                        "Politics"
+                    ),
+                    SpinnerItem(
+                        "25",
+                        "Art"
+                    ),
+                    SpinnerItem(
+                        "26",
+                        "Celebrities"
+                    ),
+                    SpinnerItem(
+                        "27",
+                        "Animals"
+                    ),
+                    SpinnerItem(
+                        "28",
+                        "Vehicles"
+                    ),
+                    SpinnerItem(
+                        "29",
+                        "Entertainment: Comics"
+                    ),
+                    SpinnerItem(
+                        "30",
+                        "Science: Gadgets"
+                    ),
+                    SpinnerItem(
+                        "31",
+                        "Entertainment: Japanese Anime & Manga"
+                    ),
+                    SpinnerItem(
+                        "32",
+                        "Entertainment: Cartoon & Animations"
+                    )
+                )
+            )
     }
 }

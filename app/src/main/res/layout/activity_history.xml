@@ -182,4 +182,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_clear_24px" />
 
+    <Spinner
+        android:id="@+id/a_history_category_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
+        android:dropDownWidth="match_parent"
+        android:fadeScrollbars="true"
+        android:popupBackground="@color/colorBackground"
+        android:scrollbarThumbHorizontal="@color/colorTextThird"
+        android:scrollbarThumbVertical="@color/colorTextThird"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"
+        android:clickable="false"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
