@@ -110,6 +110,7 @@ class HistoryActivity : AppCompatActivity() {
         fabClear.setOnClickListener { view ->
             adapter.filter("")
             rotateFab(fab)
+            searchView.setQuery("", false)
         }
 
         categorySpinner.onItemSelectedListener = object : OnItemSelectedListener {
