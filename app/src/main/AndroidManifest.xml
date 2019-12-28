@@ -14,7 +14,7 @@
         <activity android:name=".InfoActivity"
             android:screenOrientation="sensorPortrait"></activity>
         <activity android:name=".HistoryActivity"
-            android:screenOrientation="sensorPortrait"/>
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".ScoreActivity"
             android:screenOrientation="sensorPortrait" />
