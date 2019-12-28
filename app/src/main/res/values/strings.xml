@@ -29,4 +29,5 @@
     <string name="author_ladriere">Alexandre Ladrière</string>
     <string name="linkedin_ladriere"><a href="https://www.linkedin.com/in/alexandre-ladriere/">linkedin.com/in/alexandre-ladriere</a></string>
     <string name="github_ladriere"><a href="https://github.com/AlexandreLadriere">github.com/AlexandreLadriere</a></string>
+    <string name="search">Search</string>
 </resources>
