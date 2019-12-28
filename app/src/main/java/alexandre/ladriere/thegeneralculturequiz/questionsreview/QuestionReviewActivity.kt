@@ -29,7 +29,7 @@ class QuestionReviewActivity : AppCompatActivity() {
         questionArray = intent.getSerializableExtra(QUESTIONS_ARRAY) as ArrayList<Question>
         val recyclerView = findViewById<RecyclerView>(R.id.a_question_review_rcv)
         val layoutManager = LinearLayoutManager(this)
-        val adapter =
+        adapter =
             QuestionReviewAdapter(
                 questionArray,
                 ::favQuestion
