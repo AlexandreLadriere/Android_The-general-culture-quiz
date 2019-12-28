@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_question.*
 
@@ -13,6 +14,7 @@ class QuestionActivity : AppCompatActivity() {
 
     private lateinit var questionArray: ArrayList<Question>
     private var currentPosition: Int = 0
+    private var isFav: Boolean = false
 
     private lateinit var categoryTv: TextView
     private lateinit var questionTv: TextView
@@ -23,6 +25,7 @@ class QuestionActivity : AppCompatActivity() {
     private lateinit var proposition4B: Button
     private lateinit var nextB: Button
     private lateinit var correctB: Button
+    private lateinit var favoriteB: ImageButton
 
     private val questionDao = AppDatabase.getAppDatabase(
         this
@@ -41,6 +44,7 @@ class QuestionActivity : AppCompatActivity() {
         proposition3B = a_question_button_p3
         proposition4B = a_question_button_p4
         nextB = a_question_button_next
+        favoriteB = a_question_image_button_fav
 
         updateQuestionActivity()
 
@@ -57,19 +61,31 @@ class QuestionActivity : AppCompatActivity() {
             clickListenerAction(proposition4B)
         }
         nextB.setOnClickListener {
+            if(questionDao.findByQuestion(questionArray[currentPosition].question) == null) {
+                questionDao.insert(questionArray[currentPosition])
+            }
             currentPosition += 1
             updateQuestionActivity()
             resetPropositionBackground()
             enablingButtonClick()
+        }
+        favoriteB.setOnClickListener {
+            if(!isFav) {
+                questionArray[currentPosition].favorite = true
+                favoriteB.setImageResource(R.drawable.ic_favorite_24px)
+                isFav = true
+            }
+            else {
+                questionArray[currentPosition].favorite = false
+                favoriteB.setImageResource(R.drawable.ic_favorite_border_24px)
+                isFav = false
+            }
         }
     }
 
     private fun clickListenerAction(button: Button) {
         questionArray[currentPosition].correct =
             checkResponse(button, questionArray[currentPosition])
-        if(questionDao.findByQuestion(questionArray[currentPosition].question) == null) {
-            questionDao.insert(questionArray[currentPosition])
-        }
         disablingButtonClick()
         nextB.visibility = Button.VISIBLE
     }
@@ -102,6 +118,8 @@ class QuestionActivity : AppCompatActivity() {
 
     private fun updateQuestionActivity() {
         nextB.visibility = Button.INVISIBLE
+        favoriteB.setImageResource(R.drawable.ic_favorite_border_24px)
+        isFav = false
         if (currentPosition < questionArray.size && currentPosition >= 0) {
             questionNbTv.text = "${currentPosition + 1}/${questionArray.size}"
             categoryTv.text = questionArray[currentPosition].category
