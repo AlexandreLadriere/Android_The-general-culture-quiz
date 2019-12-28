@@ -99,7 +99,7 @@ class HistoryActivity : AppCompatActivity() {
             categorySpinner.performClick()
         }
         fabFav.setOnClickListener { view ->
-            Toast.makeText(this, "Fav", Toast.LENGTH_SHORT).show()
+            adapter.filterFav(true)
         }
         fabCorrect.setOnClickListener { view ->
             adapter.filterCorrect(true)

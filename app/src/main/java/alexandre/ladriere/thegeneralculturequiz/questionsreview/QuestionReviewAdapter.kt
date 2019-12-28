@@ -74,6 +74,16 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
         notifyDataSetChanged()
     }
 
+    fun filterFav(para: Boolean) {
+        questions.clear()
+        for(item in itemsCopy) {
+            if(item.favorite == para) {
+                questions.add(item)
+            }
+        }
+        notifyDataSetChanged()
+    }
+
     fun filterCategory(para: String) {
         questions.clear()
         for(item in itemsCopy) {
