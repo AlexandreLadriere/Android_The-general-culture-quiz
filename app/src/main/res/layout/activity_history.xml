@@ -87,4 +87,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/a_history_search_view" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/a_history_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:tint="@color/colorText"
+        app:backgroundTint="@color/colorTextSecond"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="@color/colorText"
+        app:srcCompat="@drawable/ic_more_horiz_24px" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
