@@ -3,6 +3,7 @@ package alexandre.ladriere.thegeneralculturequiz
 import alexandre.ladriere.thegeneralculturequiz.questions.AppDatabase
 import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import alexandre.ladriere.thegeneralculturequiz.questionsreview.QuestionReviewAdapter
+import alexandre.ladriere.thegeneralculturequiz.utils.ViewAnimation
 import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
@@ -20,6 +21,7 @@ class HistoryActivity : AppCompatActivity() {
             questionArray
         )
     private val questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
+    private var isRotate = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +57,10 @@ class HistoryActivity : AppCompatActivity() {
             searchView.isIconified = false
             searchView.clearFocus()
             searchView.requestFocusFromTouch()
+        }
+        val fab = a_history_fab
+        fab.setOnClickListener { view ->
+            isRotate = ViewAnimation().rotateFab(view, !isRotate)
         }
     }
 

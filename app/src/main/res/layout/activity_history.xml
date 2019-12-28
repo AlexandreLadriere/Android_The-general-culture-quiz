@@ -102,4 +102,84 @@
         app:rippleColor="@color/colorText"
         app:srcCompat="@drawable/ic_more_horiz_24px" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/a_history_fab_sort"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="10dp"
+        android:tint="@color/colorText"
+        app:backgroundTint="@color/colorTextThird"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/a_history_fab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_filter_list_24px" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/a_history_fab_fav"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="10dp"
+        android:tint="@color/colorText"
+        app:backgroundTint="@color/colorTextThird"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/a_history_fab_sort"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_favorite_24px" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/a_history_fab_correct"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="10dp"
+        android:tint="@color/colorText"
+        app:backgroundTint="@color/colorTextThird"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/a_history_fab_fav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_done_24px" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/a_history_fab_false"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="10dp"
+        android:tint="@color/colorText"
+        app:backgroundTint="@color/colorTextThird"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/a_history_fab_correct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_cancel_24px" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/a_history_fab_clear"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="10dp"
+        android:tint="@color/colorText"
+        app:backgroundTint="@color/colorTextThird"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/a_history_fab_false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_clear_24px" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
