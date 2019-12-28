@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.activity_history.*
 class HistoryActivity : AppCompatActivity() {
 
     private var questionArray: ArrayList<Question> = ArrayList()
-    private val adapter =
+    private var adapter =
         QuestionReviewAdapter(
             questionArray,
             ::favQuestion
@@ -45,7 +45,7 @@ class HistoryActivity : AppCompatActivity() {
         setQuestionList(questionDao.getAll().reversed() as ArrayList<Question>)
         val recyclerView = findViewById<RecyclerView>(R.id.a_history_rcv)
         val layoutManager = LinearLayoutManager(this)
-        val adapter =
+        adapter =
             QuestionReviewAdapter(
                 questionArray,
                 ::favQuestion
@@ -168,10 +168,11 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun favQuestion(position: Int) {
-        questionDao.updateQuestionFav(this.questionArray[position].question, !this.questionArray[position].favorite)
-        this.questionArray[position].favorite = !this.questionArray[position].favorite
-        Toast.makeText(this, "Question: ${this.questionArray[position].question}\nfavorite: ${this.questionArray[position].favorite.toString()}", Toast.LENGTH_LONG).show()
-        //adapter.notifyDataSetChanged()
+        val tmpQuestion = this.questionArray[position]
+        tmpQuestion.favorite = !this.questionArray[position].favorite
+        questionDao.updateQuestionFav(tmpQuestion.question, tmpQuestion.favorite)
+        questionArray[position] = tmpQuestion
+        adapter.notifyItemChanged(position)
     }
 
     private fun initCategorySpinner() {

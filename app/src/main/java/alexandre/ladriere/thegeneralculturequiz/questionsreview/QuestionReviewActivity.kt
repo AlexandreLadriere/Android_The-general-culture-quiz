@@ -6,6 +6,7 @@ import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import alexandre.ladriere.thegeneralculturequiz.utils.QUESTIONS_ARRAY
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_question_review.*
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_question_review.*
 class QuestionReviewActivity : AppCompatActivity() {
 
     private var questionArray: ArrayList<Question> = ArrayList()
-    private val adapter =
+    private var adapter =
         QuestionReviewAdapter(
             questionArray,
             ::favQuestion
@@ -41,8 +42,10 @@ class QuestionReviewActivity : AppCompatActivity() {
     }
 
     private fun favQuestion(position: Int) {
-        val question = this.questionArray[position]
-        questionDao.updateQuestionFav(question.question, !question.favorite)
+        val tmpQuestion = this.questionArray[position]
+        tmpQuestion.favorite = !this.questionArray[position].favorite
+        questionDao.updateQuestionFav(tmpQuestion.question, tmpQuestion.favorite)
+        questionArray[position] = tmpQuestion
         adapter.notifyItemChanged(position)
     }
 }
