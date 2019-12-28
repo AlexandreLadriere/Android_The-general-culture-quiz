@@ -7,6 +7,7 @@ import alexandre.ladriere.thegeneralculturequiz.utils.ViewAnimation
 import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -59,8 +60,46 @@ class HistoryActivity : AppCompatActivity() {
             searchView.requestFocusFromTouch()
         }
         val fab = a_history_fab
+        val fabSort = a_history_fab_sort
+        val fabFav = a_history_fab_fav
+        val fabCorrect = a_history_fab_correct
+        val fabFalse = a_history_fab_false
+        val fabClear = a_history_fab_clear
+        ViewAnimation().init(fabSort)
+        ViewAnimation().init(fabFav)
+        ViewAnimation().init(fabCorrect)
+        ViewAnimation().init(fabFalse)
+        ViewAnimation().init(fabClear)
         fab.setOnClickListener { view ->
             isRotate = ViewAnimation().rotateFab(view, !isRotate)
+            if(isRotate){
+                ViewAnimation().showIn(fabSort)
+                ViewAnimation().showIn(fabFav)
+                ViewAnimation().showIn(fabCorrect)
+                ViewAnimation().showIn(fabFalse)
+                ViewAnimation().showIn(fabClear)
+            }else{
+                ViewAnimation().showOut(fabSort)
+                ViewAnimation().showOut(fabFav)
+                ViewAnimation().showOut(fabCorrect)
+                ViewAnimation().showOut(fabFalse)
+                ViewAnimation().showOut(fabClear)
+            }
+        }
+        fabSort.setOnClickListener { view ->
+            Toast.makeText(this, "Sort", Toast.LENGTH_SHORT).show()
+        }
+        fabFav.setOnClickListener { view ->
+            Toast.makeText(this, "Fav", Toast.LENGTH_SHORT).show()
+        }
+        fabCorrect.setOnClickListener { view ->
+            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show()
+        }
+        fabFalse.setOnClickListener { view ->
+            Toast.makeText(this, "False", Toast.LENGTH_SHORT).show()
+        }
+        fabClear.setOnClickListener { view ->
+            Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show()
         }
     }
 
