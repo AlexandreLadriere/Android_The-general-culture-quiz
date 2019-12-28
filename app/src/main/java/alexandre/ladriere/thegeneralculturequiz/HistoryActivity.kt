@@ -26,7 +26,8 @@ class HistoryActivity : AppCompatActivity() {
     private var questionArray: ArrayList<Question> = ArrayList()
     private val adapter =
         QuestionReviewAdapter(
-            questionArray
+            questionArray,
+            ::favQuestion
         )
     private val questionDao = AppDatabase.getAppDatabase(this).getQuestionDao()
     private var isRotate = false
@@ -46,7 +47,8 @@ class HistoryActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         val adapter =
             QuestionReviewAdapter(
-                questionArray
+                questionArray,
+                ::favQuestion
             )
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
@@ -165,7 +167,12 @@ class HistoryActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged()
     }
 
-
+    private fun favQuestion(position: Int) {
+        questionDao.updateQuestionFav(this.questionArray[position].question, !this.questionArray[position].favorite)
+        this.questionArray[position].favorite = !this.questionArray[position].favorite
+        Toast.makeText(this, "Question: ${this.questionArray[position].question}\nfavorite: ${this.questionArray[position].favorite.toString()}", Toast.LENGTH_LONG).show()
+        //adapter.notifyDataSetChanged()
+    }
 
     private fun initCategorySpinner() {
         categorySpinner.adapter =

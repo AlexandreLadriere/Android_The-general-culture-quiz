@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import java.util.Collections.addAll
 
-class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
+class QuestionReviewAdapter(private val questions: ArrayList<Question>, private val favQuestion: (Int) -> Unit) :
     RecyclerView.Adapter<QuestionReviewViewHolder>() {
 
     private val itemsCopy: ArrayList<Question> = ArrayList()
@@ -21,7 +21,8 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>) :
         val row = LayoutInflater.from(parent.context)
             .inflate(R.layout.question_review_item, parent, false)
         return QuestionReviewViewHolder(
-            row
+            row,
+            favQuestion
         )
     }
 

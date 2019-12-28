@@ -1,6 +1,7 @@
 package alexandre.ladriere.thegeneralculturequiz.questionsreview
 
 import alexandre.ladriere.thegeneralculturequiz.R
+import alexandre.ladriere.thegeneralculturequiz.questions.AppDatabase
 import alexandre.ladriere.thegeneralculturequiz.questions.Question
 import alexandre.ladriere.thegeneralculturequiz.utils.QUESTIONS_ARRAY
 import androidx.appcompat.app.AppCompatActivity
@@ -14,8 +15,12 @@ class QuestionReviewActivity : AppCompatActivity() {
     private var questionArray: ArrayList<Question> = ArrayList()
     private val adapter =
         QuestionReviewAdapter(
-            questionArray
+            questionArray,
+            ::favQuestion
         )
+    private val questionDao = AppDatabase.getAppDatabase(
+        this
+    ).getQuestionDao()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +30,19 @@ class QuestionReviewActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         val adapter =
             QuestionReviewAdapter(
-                questionArray
+                questionArray,
+                ::favQuestion
             )
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         val backB = a_question_review_image_button_back.setOnClickListener {
             this.finish()
         }
+    }
+
+    private fun favQuestion(position: Int) {
+        val question = this.questionArray[position]
+        questionDao.updateQuestionFav(question.question, !question.favorite)
+        adapter.notifyItemChanged(position)
     }
 }
