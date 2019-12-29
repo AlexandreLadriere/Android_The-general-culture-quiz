@@ -1,5 +1,9 @@
 # The General Culture Quiz (Android App)
 
+[![GitHub license](https://img.shields.io/github/license/AlexandreLadriere/Android_The-general-culture-quiz.svg)](https://github.com/AlexandreLadriere/Android_The-general-culture-quiz/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/AlexandreLadriere/Android_The-general-culture-quiz)](https://github.com/AlexandreLadriere/Android_The-general-culture-quiz/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/AlexandreLadriere/Android_The-general-culture-quiz.svg)](https://github.com/AlexandreLadriere/Android_The-general-culture-quiz)  
+
 This application is a general culture quiz using [Open Trivia Database]. So I'm not responsible for the questions and answers.
 I made this app only in order to have a game to pass the time in public transportation for example. 
 
@@ -41,19 +45,15 @@ And you can also choose the amount of questions (between 1 and 50).
 You also have a history of all the questions you have answered. You can filter this list by categories, by correct answer, ...
 
 ## Screenshots
+<div align="center">
 <img alt="main.jpg" src="demo/main.jpg" width="216" height="384" /> 
-
 <img alt="question.jpg" src="demo/question.jpg" width="216" height="384" />
-
-<img alt="question_response.jpg" src="demo/question_response.jpg" width="216" height="384" />
- 
-<img alt="score.jpg" src="demo/score.jpg" width="216" height="384" /> 
-
+<img alt="question_response.jpg" src="demo/question_response.jpg" width="216" height="384" /> 
+<img alt="score.jpg" src="demo/score.jpg" width="216" height="384" />
 <img alt="question_review.jpg" src="demo/question_review.jpg" width="216" height="384" />
-
 <img alt="history.jpg" src="demo/history.jpg" width="216" height="384" />  
-
 <img alt="search_history.jpg" src="demo/search_history.jpg" width="216" height="384" /> 
+</div>
 
 ## To Do
   - Create the Success activity and all success
@@ -62,6 +62,19 @@ You also have a history of all the questions you have answered. You can filter t
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE] file for details.
+
+
+## Contributing
+Contributions are welcome :smile:
+
+### Pull requests
+Just a few guidelines:
+* Write clean code with appropriate comments and add suitable error handling.
+* Test the application and make sure no bugs/ issues come up.
+* Open a pull request and I will be happy to acknowledge your contribution after some checking from my side.
+
+### Issues
+If you find any bugs/issues, raise an issue.
 
 
   [LICENSE]: <LICENSE>
