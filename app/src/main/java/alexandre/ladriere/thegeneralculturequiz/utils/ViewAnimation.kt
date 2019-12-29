@@ -4,8 +4,13 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.view.View
 
-
-class ViewAnimation() {
+/**
+ * Custom class to animate views
+ */
+class ViewAnimation {
+    /**
+     * Rotates the specified view (FAB) to the clockwise direction or to the counterclockwise direction by 90deg, according to the current position
+     */
     fun rotateFab(v: View, rotate: Boolean): Boolean {
         v.animate().setDuration(200)
             .setListener(object : AnimatorListenerAdapter() {
@@ -17,6 +22,9 @@ class ViewAnimation() {
         return rotate
     }
 
+    /**
+     * Display the specified view (by vertical translation
+     */
     fun showIn(v: View) {
         v.visibility = View.VISIBLE
         v.alpha = 0f
@@ -33,6 +41,9 @@ class ViewAnimation() {
             .start()
     }
 
+    /**
+     * Hides the specified view (by vertical transaction)
+     */
     fun showOut(v: View) {
         v.visibility = View.VISIBLE
         v.alpha = 1f
