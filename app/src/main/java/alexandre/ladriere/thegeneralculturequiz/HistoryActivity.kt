@@ -20,7 +20,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_history.*
 
-
+/**
+ * Custom activity to display all questions answered since the installation of the app
+ */
 class HistoryActivity : AppCompatActivity() {
 
     private var questionArray: ArrayList<Question> = ArrayList()

@@ -8,10 +8,16 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
 
+/**
+ * Custom Dialog View
+ */
 class ViewDialog(private val activity: Activity) {
 
     private lateinit var dialog: Dialog
 
+    /**
+     * Display the custom dialog box
+     */
     fun showDialog() {
         dialog = Dialog(activity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -29,6 +35,9 @@ class ViewDialog(private val activity: Activity) {
         dialog.show()
     }
 
+    /**
+     * Hide the custom dialog box
+     */
     fun hideDialog() {
         dialog.dismiss()
     }

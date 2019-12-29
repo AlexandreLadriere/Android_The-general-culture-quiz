@@ -8,7 +8,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import java.util.Collections.addAll
 
-class QuestionReviewAdapter(private val questions: ArrayList<Question>, private val favQuestion: (Int) -> Unit) :
+/**
+ * Custom Adapter for the recycler view of the QuestionReviewActivity
+ */
+class QuestionReviewAdapter(
+    private val questions: ArrayList<Question>,
+    private val favQuestion: (Int) -> Unit
+) :
     RecyclerView.Adapter<QuestionReviewViewHolder>() {
 
     private val itemsCopy: ArrayList<Question> = ArrayList()
@@ -36,10 +42,9 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>, private 
             holder.itemView.setBackgroundResource(R.drawable.custom_rectangle_error_cr20_empty)
             holder.answer.text = "Correct answer: $correctAnswer"
         }
-        if(favorite) {
+        if (favorite) {
             holder.favorite.setImageResource(R.drawable.ic_favorite_24px)
-        }
-        else {
+        } else {
             holder.favorite.setImageResource(R.drawable.ic_favorite_border_24px)
         }
     }
@@ -48,6 +53,9 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>, private 
         return this.questions.size
     }
 
+    /**
+     * Updates items list of the recycler view according to the specified string
+     */
     @SuppressLint("DefaultLocale")
     fun filter(txt: String) {
         var text = txt
@@ -57,7 +65,10 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>, private 
         } else {
             text = text.toLowerCase()
             for (item in itemsCopy) {
-                if (item.question.toLowerCase().contains(text) || item.correctAnswer.toLowerCase().contains(text)) {
+                if (item.question.toLowerCase().contains(text) || item.correctAnswer.toLowerCase().contains(
+                        text
+                    )
+                ) {
                     questions.add(item)
                 }
             }
@@ -65,30 +76,39 @@ class QuestionReviewAdapter(private val questions: ArrayList<Question>, private 
         notifyDataSetChanged()
     }
 
+    /**
+     * Updates items list of the recycler view according to the specified boolean corresponding the "correct" status of the question
+     */
     fun filterCorrect(para: Boolean) {
         questions.clear()
-        for(item in itemsCopy) {
-            if(item.correct == para) {
+        for (item in itemsCopy) {
+            if (item.correct == para) {
                 questions.add(item)
             }
         }
         notifyDataSetChanged()
     }
 
+    /**
+     * Updates items list of the recycler view according to the specified boolean corresponding to the "favorite" status of the question
+     */
     fun filterFav(para: Boolean) {
         questions.clear()
-        for(item in itemsCopy) {
-            if(item.favorite == para) {
+        for (item in itemsCopy) {
+            if (item.favorite == para) {
                 questions.add(item)
             }
         }
         notifyDataSetChanged()
     }
 
+    /**
+     * Updates items list of the recycler view according to the specified string corresponding to the question's category
+     */
     fun filterCategory(para: String) {
         questions.clear()
-        for(item in itemsCopy) {
-            if(item.category == para) {
+        for (item in itemsCopy) {
+            if (item.category == para) {
                 questions.add(item)
             }
         }

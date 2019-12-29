@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_score.*
 
+/**
+ * Custom activity to display player's score at the end of a game
+ */
 class ScoreActivity : AppCompatActivity() {
 
     private var questionArray: ArrayList<Question> = ArrayList()

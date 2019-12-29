@@ -10,6 +10,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_question.*
 
+/**
+ * Custom activity to display all the questions answered during a game
+ */
 class QuestionActivity : AppCompatActivity() {
 
     private lateinit var questionArray: ArrayList<Question>
@@ -61,7 +64,7 @@ class QuestionActivity : AppCompatActivity() {
             clickListenerAction(proposition4B)
         }
         nextB.setOnClickListener {
-            if(questionDao.findByQuestion(questionArray[currentPosition].question) == null) {
+            if (questionDao.findByQuestion(questionArray[currentPosition].question) == null) {
                 questionDao.insert(questionArray[currentPosition])
             }
             currentPosition += 1
@@ -70,12 +73,11 @@ class QuestionActivity : AppCompatActivity() {
             enablingButtonClick()
         }
         favoriteB.setOnClickListener {
-            if(!isFav) {
+            if (!isFav) {
                 questionArray[currentPosition].favorite = true
                 favoriteB.setImageResource(R.drawable.ic_favorite_24px)
                 isFav = true
-            }
-            else {
+            } else {
                 questionArray[currentPosition].favorite = false
                 favoriteB.setImageResource(R.drawable.ic_favorite_border_24px)
                 isFav = false

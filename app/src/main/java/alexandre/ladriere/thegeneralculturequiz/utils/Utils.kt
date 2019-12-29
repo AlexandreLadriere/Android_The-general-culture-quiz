@@ -25,6 +25,9 @@ internal fun removeSpecialCharFromString(string: String): String {
     return outStr
 }
 
+/**
+ * This function curve the upper left corner and the lower left corner of an image view, according to the specified curve radius
+ */
 fun curveImageViewCorner(image: ImageView, curveRadius: Float) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         image.outlineProvider = object : ViewOutlineProvider() {

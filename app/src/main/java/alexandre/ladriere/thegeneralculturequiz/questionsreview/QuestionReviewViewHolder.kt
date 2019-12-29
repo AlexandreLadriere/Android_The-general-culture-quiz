@@ -7,6 +7,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Custom View Holder for the recycler view of the QuestionReviewActivity
+ */
 class QuestionReviewViewHolder(rootView: View, private val favQuestion: (Int) -> Unit) :
     RecyclerView.ViewHolder(rootView) {
     var question: TextView = rootView.findViewById(R.id.item_text_view_question)

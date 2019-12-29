@@ -15,6 +15,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * Main Activity of the app
+ */
 class MainActivity : AppCompatActivity() {
 
     private val opentdbServe by lazy {
@@ -86,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         disposable?.dispose()
     }
 
-    fun getQuestionsFromAPI(
+    private fun getQuestionsFromAPI(
         pAmount: String = "10",
         pCategory: String = "",
         pDifficulty: String = "",

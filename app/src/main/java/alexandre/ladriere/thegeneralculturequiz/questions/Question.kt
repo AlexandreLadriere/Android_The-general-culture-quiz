@@ -4,6 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
+/**
+ * Custom object to represent a Question according to the OpenTriviaDB API response
+ */
 @Entity
 data class Question(
     val category: String,
