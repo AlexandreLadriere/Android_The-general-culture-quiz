@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.custom_spinner_item.view.*
 
+/**
+ * Custom class that implements an array adapter for a spinner widget
+ */
 class SpinnerItemArrayAdapter(ctx: Context, items: List<SpinnerItem>) :
     ArrayAdapter<SpinnerItem>(ctx, 0, items) {
 
