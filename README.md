@@ -6,7 +6,9 @@
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.3.61-blue.svg)](http://kotlinlang.org/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/990771c89e444ba18204ad8ed855bca0)](https://www.codacy.com/manual/alexandre.ladriere77/Android_The-general-culture-quiz?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AlexandreLadriere/Android_The-general-culture-quiz&amp;utm_campaign=Badge_Grade)
 
-<img alt="mockup.jpg" src="demo/mockup.png" width="400" height="400" align="right"/> 
+<div>
+<img alt="mockup.jpg" src="demo/mockup.png" width="400" height="400" align = "right"/>
+<img alt="mockup2.jpg" src="demo/mockup2.png" width="400" height="400" align = "right"/>
 This application is a general culture quiz using [Open Trivia Database]. So I'm not responsible for the questions and answers.
 I made this app only in order to have a game to pass the time in public transportation for example. 
 
@@ -46,6 +48,7 @@ Then, you can choose between one of the 25 following categories of questions:
 And you can also choose the amount of questions (between 1 and 50).
 
 You also have a history of all the questions you have answered. You can filter this list by categories, by correct answer, ...
+</div>
 
 ## Screenshots
 <div align="center">
